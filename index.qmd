@@ -22,5 +22,9 @@
 
 ## 유튜브 채널 {.unnumbered}
 
-각 챕터에 대응하는 강의 영상은 **통계학 산책** 유튜브 채널에서 볼 수 있습니다.
+각 챕터에 대응하는 강의 영상은 아래 재생목록에서 볼 수 있습니다.
 책과 영상을 함께 활용하시면 더 효과적입니다.
+
+::: {style="text-align: center; margin: 1em 0;"}
+[▶ 통계학 산책 재생목록 바로가기](https://youtube.com/playlist?list=PLpX4d5n0gRfQe0RpCR-jH8b4o0iHPeXaa&si=4MVFil9Cb7rMbr6n){.btn .btn-danger target="_blank" style="background-color: #FF0000; color: white; padding: 0.5em 1.2em; border-radius: 4px; text-decoration: none; font-weight: bold;"}
+:::
