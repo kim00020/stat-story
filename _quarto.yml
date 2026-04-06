@@ -1,0 +1,31 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "통계학 산책"
+  author: "김재광"
+  date: "2026"
+  language: ko
+  repo-url: https://github.com/jkkim/통계학산책
+  chapters:
+    - index.qmd
+    - week1.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+    mainfont: "Noto Serif KR"
+    highlight-style: github
+  pdf:
+    pdf-engine: xelatex
+    mainfont: "Noto Serif CJK KR"
+    mathfont: "Latin Modern Math"
+    number-sections: true
+    include-in-header:
+      text: |
+        \usepackage{kotex}
+
+bibliography: references.bib

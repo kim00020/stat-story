@@ -1,0 +1,90 @@
+{
+    "sources": [
+        {
+            "author": [
+                {
+                    "family": "Kim",
+                    "given": "Jae Kwang"
+                },
+                {
+                    "family": "Yu",
+                    "given": "C. L."
+                }
+            ],
+            "container-title": "Journal of the American Statistical Association",
+            "id": "kim2011",
+            "issued": {
+                "date-parts": [
+                    [
+                        2011
+                    ]
+                ]
+            },
+            "page": "157-165",
+            "title": "A semi-parametric estimation of mean functionals with non-ignorable missing data",
+            "type": "article-journal",
+            "volume": "106"
+        },
+        {
+            "author": [
+                {
+                    "family": "Riddles",
+                    "given": "Misty K."
+                },
+                {
+                    "family": "Kim",
+                    "given": "Jae Kwang"
+                },
+                {
+                    "family": "Im",
+                    "given": "Jongho"
+                }
+            ],
+            "container-title": "Journal of Survey Statistics and Methodology",
+            "id": "riddles2016",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "page": "215-245",
+            "title": "Propensity score adjustment method for nonignorable nonresponse",
+            "type": "article-journal",
+            "volume": "4"
+        },
+        {
+            "author": [
+                {
+                    "family": "Wang",
+                    "given": "S."
+                },
+                {
+                    "family": "Shao",
+                    "given": "J."
+                },
+                {
+                    "family": "Kim",
+                    "given": "Jae Kwang"
+                }
+            ],
+            "container-title": "Statistica Sinica",
+            "id": "wang2014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "page": "1097-1116",
+            "title": "An instrumental variable approach for identification and estimation with nonignorable nonresponse",
+            "type": "article-journal",
+            "volume": "24"
+        }
+    ],
+    "project_biblios": [
+        "references.bib"
+    ]
+}
