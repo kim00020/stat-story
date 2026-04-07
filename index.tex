@@ -473,10 +473,10 @@ value)}이라고 부른다.
 이 가정이 성립하면 인구학적 보정은 완벽하게 작동한다. 문제는 \textbf{이
 가정이 현실에서 성립하지 않을 수 있다}는 것이다.
 
-강동갑 사례에서는 아마도 이런 일이 있었을 것이다: 같은 성별, 같은
-연령대이더라도 \textbf{새누리당 지지자들이 응답을 더 많이 거부했다.} 그
-결과 응답자 중 새누리당 지지자의 비율이 실제보다 낮게 잡혔고, 집계
-결과가 왜곡되었다.
+강동갑 사례에서는 인구학적 보정으로는 충분하지 않았다. 그 이유는 아마도
+다음과 같이 정리될수 있을 것이다: 같은 성별, 같은 연령대이더라도
+\textbf{새누리당 지지자들이 응답을 더 많이 거부했다.} 그 결과 응답자 중
+새누리당 지지자의 비율이 실제보다 낮게 잡혔고, 집계 결과가 왜곡되었다.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -552,8 +552,9 @@ Nonresponse odds 함수를 다음과 같이 정의하자.
 
 \begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
 
-2012년 강동갑의 상황은 \(\beta_2 < 0\)의 경우였다. 이것이 인구학적
-보정을 아무리 해도 편향이 제거되지 않았던 근본적인 이유다.
+2012년 강동갑의 상황은 \(\beta_2 < 0\)의 경우였다. 따라서 식 (5)에서
+새누리당 지지 확률은 첫번째 항 \(P(Y=y | X, R=1)\)에 1보다 더 큰 값을
+곱해주는 결과를 가져오게 된다.
 
 \end{tcolorbox}
 
