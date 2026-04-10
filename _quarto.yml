@@ -6,10 +6,11 @@ book:
   title: "통계학 산책"
   author: "김재광"
   language: ko
-  repo-url: https://github.com/jkkim/통계학산책
+  repo-url: https://github.com/kim00020/stat-story
   chapters:
     - index.qmd
     - week1.qmd
+    - week2.qmd
 
 format:
   html:
