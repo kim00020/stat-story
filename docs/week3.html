@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; 제3강: 외래 관광객 수를 어떻게 셀 것인가 – 통계학 산책</title>
+<title>3&nbsp; 제3강: 외래 관광객수 추정 – 통계학 산책</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -132,7 +132,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./week3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">제3강: 외래 관광객 수를 어떻게 셀 것인가</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./week3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">제3강: 외래 관광객수 추정</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -181,7 +181,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">제3강: 외래 관광객 수를 어떻게 셀 것인가</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">제3강: 외래 관광객수 추정</span></span></a>
   </div>
 </li>
     </ul>
@@ -227,7 +227,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">제3강: 외래 관광객 수를 어떻게 셀 것인가</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">제3강: 외래 관광객수 추정</span></h1>
 </div>
 
 
@@ -474,7 +474,8 @@ window.Quarto = {
 </section>
 <section id="결합-계수의-직관" class="level3" data-number="3.6.2">
 <h3 data-number="3.6.2" class="anchored" data-anchor-id="결합-계수의-직관"><span class="header-section-number">3.6.2</span> 결합 계수의 직관</h3>
-<p>식 (2)는 두 추정량의 <strong>가중평균</strong>이다. 오른쪽 항 <span class="math inline">\(X_i \hat{\beta}\)</span>는 “KT 값에 보정 계수를 곱한 것”, 즉 모형으로부터 만들어진 합성(synthetic) 추정값이다. 왼쪽 항 <span class="math inline">\(\hat{Y}_i\)</span>는 서베이로부터 얻은 직접(direct) 추정값이다.</p>
+<p>식 (2)는 두 추정량의 <strong>가중평균</strong>이다. 오른쪽 항 <span class="math inline">\(X_i \hat{\beta}\)</span>는 “KT 값에 보정 계수를 곱한 것”, 즉 모형으로부터 만들어진 <strong>합성 추정량(synthetic estimator)</strong>이다. 왼쪽 항 <span class="math inline">\(\hat{Y}_i\)</span>는 서베이로부터 얻은 <strong>직접 추정량(direct estimator)</strong>이다.</p>
+<p>이렇게 성격이 서로 다른 두 추정량을 결합한 형태의 추정량을 통계학에서는 <strong>복합 추정량(composite estimator)</strong>이라고 부른다. 한 종류의 정보만으로는 부족할 때 여러 정보원을 복합적으로 활용한다는 뜻에서다. 즉 최적 예측치 <span class="math inline">\(\hat{Y}_i^*\)</span>는 <strong>직접 추정량과 합성 추정량의 복합 추정량</strong>이다.</p>
 <p>결합 계수 <span class="math inline">\(\alpha_i\)</span>의 해석은 직관적이다.</p>
 <ul>
 <li><span class="math inline">\(V(u_i)/V(e_i) \to 0\)</span>이면 <span class="math inline">\(\alpha_i \to 1\)</span>이 되어 <span class="math inline">\(\hat{Y}_i^* \to \hat{Y}_i\)</span>. 즉 <strong>서베이 오차가 작으면 서베이 값을 그대로 믿는다.</strong></li>
@@ -748,7 +749,7 @@ window.Quarto = {
 <p>전통적으로 공식 통계는 서베이에 의존해왔다. 그러나 최근 상황은 빠르게 바뀌고 있다.</p>
 <p>한편으로는 <strong>위기</strong>다. 응답률은 점점 떨어지고 — 제1강의 출구조사 사례에서 이미 보았듯이 — 조사 예산은 줄어들고 있다. 다른 한편으로는 <strong>기회</strong>이기도 하다. 핸드폰 로밍 데이터, 신용카드 거래 데이터, 검색어 데이터 등 예전에는 상상할 수 없던 방대한 자료가 실시간으로 쏟아진다.</p>
 <p>하지만 빅데이터를 그대로 쓸 수는 없다. 정보 편향이 있기 때문이다. 반대로 서베이만 고집하기도 어렵다. 표본이 부족하기 때문이다.</p>
-<p>소지역 추정은 이 두 세계를 연결하는 다리다. 서베이를 <strong>학습 자료</strong>로 삼아 빅데이터를 보정하고, 동시에 빅데이터의 풍부한 정보량을 활용하여 서베이의 한계를 극복한다. 보정된 빅데이터 자료를 그대로 통계로 사용하는 합성 데이터 방식(synthetic data method)은 모형에 지나치게 의존하므로, 이를 보완하기 위해 직접 추정량과 결합하는 것이 소지역 추정의 핵심이다.</p>
+<p>소지역 추정은 이 두 세계를 연결하는 다리다. 서베이를 <strong>학습 자료</strong>로 삼아 빅데이터를 보정하고, 동시에 빅데이터의 풍부한 정보량을 활용하여 서베이의 한계를 극복한다. 보정된 빅데이터 자료를 그대로 통계로 사용하는 합성 데이터 방식(synthetic data method)은 모형에 지나치게 의존하므로, 이를 보완하기 위해 직접 추정량과 결합한 <strong>복합 추정량</strong>을 사용하는 것이 소지역 추정의 핵심이다.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
