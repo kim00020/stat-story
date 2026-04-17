@@ -27,5 +27,3 @@ format:
     include-in-header:
       text: |
         \usepackage{kotex}
-
-bibliography: references.bib
