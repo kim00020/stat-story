@@ -82,6 +82,32 @@
             "title": "An instrumental variable approach for identification and estimation with nonignorable nonresponse",
             "type": "article-journal",
             "volume": "24"
+        },
+        {
+            "author": [
+                {
+                    "family": "Fay",
+                    "given": "Robert E."
+                },
+                {
+                    "family": "Herriot",
+                    "given": "Roger A."
+                }
+            ],
+            "container-title": "Journal of the American Statistical Association",
+            "id": "fay1979",
+            "issued": {
+                "date-parts": [
+                    [
+                        1979
+                    ]
+                ]
+            },
+            "page": "269-277",
+            "title": "Estimates of income for small places: An application of James-Stein procedures to census data",
+            "title-short": "Estimates of income for small places",
+            "type": "article-journal",
+            "volume": "74"
         }
     ],
     "project_biblios": [
