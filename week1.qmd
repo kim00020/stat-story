@@ -1,6 +1,5 @@
 ---
 title: "제1강: 출구조사의 추억"
-bibliography: references-week1.bib
 ---
 
 > "통계학은 데이터에서 진실을 끌어내는 학문이다. 그러나 진실을 끌어내려면, 먼저 데이터가 우리에게 거짓말을 하고 있다는 사실을 알아야 한다."
@@ -178,7 +177,7 @@ $$P(R=1 \mid X, Y) = \frac{\exp(\beta_0 + \beta_1 X + \beta_2 Y)}{1 + \exp(\beta
 
 $$P(Y=y \mid x, R=0) = P(Y=y \mid x, R=1) \cdot \frac{\exp(-\beta_2 y)}{E[\exp(-\beta_2 Y) \mid x, R=1]} \tag{5}$$
 
-핵심은 **$\beta_2$ 하나**다. 이 모형은 @kim2011 에서 처음 소개되었으며,
+핵심은 **$\beta_2$ 하나**다. 이 모형은 Kim and Yu (2011)에서 처음 소개되었으며,
 **Exponential tilting model**이라고 부른다.
 
 ###  β₂의 해석
@@ -200,7 +199,7 @@ $$P(Y=y \mid x, R=0) = P(Y=y \mid x, R=1) \cdot \frac{\exp(-\beta_2 y)}{E[\exp(-
 
 ### 강동갑 선거구
 
-@riddles2016 은 식 (5)의 $\beta_2$를 **EM 알고리즘**으로 추정하는
+Riddles, Kim, and Im (2016)은 식 (5)의 $\beta_2$를 **EM 알고리즘**으로 추정하는
 방법론을 개발하고 강동갑 데이터에 적용했다.
 
 **표 1.4: 강동갑 출구조사 분석 결과 (%)**
@@ -235,7 +234,7 @@ $$P(Y=y \mid x, R=0) = P(Y=y \mid x, R=1) \cdot \frac{\exp(-\beta_2 y)}{E[\exp(-
 이 연구의 출발점은 저자의 2006년 출구조사 자문단 참여였다. 당시는 연세대 응용통계학과에 근무할 시절이라 한국의 기관들과의 협력이 수월했다. SBS 방송사의 연락으로 자문단에 참여하게 되었는데 이번 무응답 문제에 대해 알게 되었다. MAR 가정이 성립하지 않는다는 것을 알고 이를 어떻게 해결할수 있을지를 고민하기 시작했다. 
 
 그후 미국으로 이민을 오게 되었고 당시의 문제를 좀더 깊이있게 고민할 기회가 생겼다. 그 연구 결과는 
-@kim2011 과 @wang2014 로 이어졌다.
+Kim and Yu (2011)과 Wang et al. (2014)으로 이어졌다.
 두 논문은 저자의 논문 중 가장 많이 인용되는 논문이 되었고, MAR이 성립하지 않는
 어려운 상황에서도 합리적인 추론이 가능하다는 돌파구를 제시했다는 점에서 의미가 있다.
 
@@ -258,5 +257,8 @@ $$P(Y=y \mid x, R=0) = P(Y=y \mid x, R=1) \cdot \frac{\exp(-\beta_2 y)}{E[\exp(-
 
 ## 참고문헌
 
-::: {#refs}
-:::
+Kim, J. K. and Yu, C. L. (2011). A semi-parametric estimation of mean functionals with non-ignorable missing data. *Journal of the American Statistical Association*, **106**, 157–165.
+
+Riddles, M. K., Kim, J. K. and Im, J. (2016). Propensity score adjustment method for nonignorable nonresponse. *Journal of Survey Statistics and Methodology*, **4**, 215–245.
+
+Wang, S., Shao, J. and Kim, J. K. (2014). An instrumental variable approach for identification and estimation with nonignorable nonresponse. *Statistica Sinica*, **24**, 1097–1116.

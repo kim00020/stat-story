@@ -23,26 +23,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -536,7 +517,7 @@ window.Quarto = {
 <p><span class="math display">\[P(R=1 \mid X, Y) = \frac{\exp(\beta_0 + \beta_1 X + \beta_2 Y)}{1 + \exp(\beta_0 + \beta_1 X + \beta_2 Y)}\]</span></p>
 <p>이것을 식 (4)에 대입하면 <span class="math inline">\(\beta_0\)</span>과 <span class="math inline">\(\beta_1\)</span> 항이 상쇄되어 다음을 얻는다.</p>
 <p><span class="math display">\[P(Y=y \mid x, R=0) = P(Y=y \mid x, R=1) \cdot \frac{\exp(-\beta_2 y)}{E[\exp(-\beta_2 Y) \mid x, R=1]} \tag{5}\]</span></p>
-<p>핵심은 <strong><span class="math inline">\(\beta_2\)</span> 하나</strong>다. 이 모형은 <span class="citation" data-cites="kim2011">Kim and Yu (<a href="week1.html#ref-kim2011" role="doc-biblioref">2011</a>)</span> 에서 처음 소개되었으며, <strong>Exponential tilting model</strong>이라고 부른다.</p>
+<p>핵심은 <strong><span class="math inline">\(\beta_2\)</span> 하나</strong>다. 이 모형은 Kim and Yu (2011)에서 처음 소개되었으며, <strong>Exponential tilting model</strong>이라고 부른다.</p>
 </section>
 <section id="β₂의-해석" class="level3" data-number="1.6.2">
 <h3 data-number="1.6.2" class="anchored" data-anchor-id="β₂의-해석"><span class="header-section-number">1.6.2</span> β₂의 해석</h3>
@@ -586,7 +567,7 @@ Note
 <h2 data-number="1.7" class="anchored" data-anchor-id="실증-분석-결과"><span class="header-section-number">1.7</span> 실증 분석 결과</h2>
 <section id="강동갑-선거구" class="level3" data-number="1.7.1">
 <h3 data-number="1.7.1" class="anchored" data-anchor-id="강동갑-선거구"><span class="header-section-number">1.7.1</span> 강동갑 선거구</h3>
-<p><span class="citation" data-cites="riddles2016">Riddles et al. (<a href="week1.html#ref-riddles2016" role="doc-biblioref">2016</a>)</span> 은 식 (5)의 <span class="math inline">\(\beta_2\)</span>를 <strong>EM 알고리즘</strong>으로 추정하는 방법론을 개발하고 강동갑 데이터에 적용했다.</p>
+<p>Riddles, Kim, and Im (2016)은 식 (5)의 <span class="math inline">\(\beta_2\)</span>를 <strong>EM 알고리즘</strong>으로 추정하는 방법론을 개발하고 강동갑 데이터에 적용했다.</p>
 <p><strong>표 1.4: 강동갑 출구조사 분석 결과 (%)</strong></p>
 <table class="caption-top table">
 <thead>
@@ -672,7 +653,7 @@ Note
 <section id="마무리" class="level2" data-number="1.8">
 <h2 data-number="1.8" class="anchored" data-anchor-id="마무리"><span class="header-section-number">1.8</span> 마무리</h2>
 <p>이 연구의 출발점은 저자의 2006년 출구조사 자문단 참여였다. 당시는 연세대 응용통계학과에 근무할 시절이라 한국의 기관들과의 협력이 수월했다. SBS 방송사의 연락으로 자문단에 참여하게 되었는데 이번 무응답 문제에 대해 알게 되었다. MAR 가정이 성립하지 않는다는 것을 알고 이를 어떻게 해결할수 있을지를 고민하기 시작했다.</p>
-<p>그후 미국으로 이민을 오게 되었고 당시의 문제를 좀더 깊이있게 고민할 기회가 생겼다. 그 연구 결과는 <span class="citation" data-cites="kim2011">Kim and Yu (<a href="week1.html#ref-kim2011" role="doc-biblioref">2011</a>)</span> 과 <span class="citation" data-cites="wang2014">Wang et al. (<a href="week1.html#ref-wang2014" role="doc-biblioref">2014</a>)</span> 로 이어졌다. 두 논문은 저자의 논문 중 가장 많이 인용되는 논문이 되었고, MAR이 성립하지 않는 어려운 상황에서도 합리적인 추론이 가능하다는 돌파구를 제시했다는 점에서 의미가 있다.</p>
+<p>그후 미국으로 이민을 오게 되었고 당시의 문제를 좀더 깊이있게 고민할 기회가 생겼다. 그 연구 결과는 Kim and Yu (2011)과 Wang et al.&nbsp;(2014)으로 이어졌다. 두 논문은 저자의 논문 중 가장 많이 인용되는 논문이 되었고, MAR이 성립하지 않는 어려운 상황에서도 합리적인 추론이 가능하다는 돌파구를 제시했다는 점에서 의미가 있다.</p>
 <p>마지막으로 한 가지 생각을 공유하고 싶다.</p>
 <p>출구조사의 성공을 “1등을 맞추었느냐”로 판단하는 것은 방송사의 관점이다. 통계학자의 관점은 다르다.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -693,8 +674,9 @@ Note
 </section>
 <section id="참고문헌" class="level2" data-number="1.9">
 <h2 data-number="1.9" class="anchored" data-anchor-id="참고문헌"><span class="header-section-number">1.9</span> 참고문헌</h2>
-
-
+<p>Kim, J. K. and Yu, C. L. (2011). A semi-parametric estimation of mean functionals with non-ignorable missing data. <em>Journal of the American Statistical Association</em>, <strong>106</strong>, 157–165.</p>
+<p>Riddles, M. K., Kim, J. K. and Im, J. (2016). Propensity score adjustment method for nonignorable nonresponse. <em>Journal of Survey Statistics and Methodology</em>, <strong>4</strong>, 215–245.</p>
+<p>Wang, S., Shao, J. and Kim, J. K. (2014). An instrumental variable approach for identification and estimation with nonignorable nonresponse. <em>Statistica Sinica</em>, <strong>24</strong>, 1097–1116.</p>
 
 
 </section>
