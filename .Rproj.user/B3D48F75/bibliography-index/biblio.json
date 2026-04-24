@@ -86,28 +86,32 @@
         {
             "author": [
                 {
-                    "family": "Fay",
-                    "given": "Robert E."
+                    "family": "Kim",
+                    "given": "Jae Kwang"
                 },
                 {
-                    "family": "Herriot",
-                    "given": "Roger A."
+                    "family": "Park",
+                    "given": "Seunghwan"
+                },
+                {
+                    "family": "Kim",
+                    "given": "Seo-young"
                 }
             ],
-            "container-title": "Journal of the American Statistical Association",
-            "id": "fay1979",
+            "container-title": "Survey Methodology",
+            "id": "kim2015",
+            "issue": "1",
             "issued": {
                 "date-parts": [
                     [
-                        1979
+                        2015
                     ]
                 ]
             },
-            "page": "269-277",
-            "title": "Estimates of income for small places: An application of James-Stein procedures to census data",
-            "title-short": "Estimates of income for small places",
+            "page": "21-36",
+            "title": "Small area estimation combining information from several sources",
             "type": "article-journal",
-            "volume": "74"
+            "volume": "41"
         }
     ],
     "project_biblios": [

@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; 제4강: 소지역 실업률 추정 – 통계학 산책</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./week3.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-a06763021a52c43c40a351ac8b799b8f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-60285be937bdc84707718eef6d469735.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./week4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">제4강: 소지역 실업률 추정</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">통계학 산책</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/kim00020/stat-story" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">머리말</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">제1강: 출구조사의 추억</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">제2강: 집회 참가자수 추정</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">제3강: 외래 관광객수 추정</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">제4강: 소지역 실업률 추정</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#우리-동네의-실업률은-얼마일까" id="toc-우리-동네의-실업률은-얼마일까" class="nav-link active" data-scroll-target="#우리-동네의-실업률은-얼마일까"><span class="header-section-number">4.1</span> 우리 동네의 실업률은 얼마일까</a></li>
+  <li><a href="#두-개의-실업률-조사" id="toc-두-개의-실업률-조사" class="nav-link" data-scroll-target="#두-개의-실업률-조사"><span class="header-section-number">4.2</span> 두 개의 실업률 조사</a></li>
+  <li><a href="#기초-분석-산점도" id="toc-기초-분석-산점도" class="nav-link" data-scroll-target="#기초-분석-산점도"><span class="header-section-number">4.3</span> 기초 분석 — 산점도</a></li>
+  <li><a href="#네-가지-양의-이야기" id="toc-네-가지-양의-이야기" class="nav-link" data-scroll-target="#네-가지-양의-이야기"><span class="header-section-number">4.4</span> 네 가지 양의 이야기</a>
+  <ul class="collapse">
+  <li><a href="#기호의-정리" id="toc-기호의-정리" class="nav-link" data-scroll-target="#기호의-정리"><span class="header-section-number">4.4.1</span> 기호의 정리</a></li>
+  <li><a href="#관측치와-잠재변수의-관계" id="toc-관측치와-잠재변수의-관계" class="nav-link" data-scroll-target="#관측치와-잠재변수의-관계"><span class="header-section-number">4.4.2</span> 관측치와 잠재변수의 관계</a></li>
+  </ul></li>
+  <li><a href="#두-개의-모형" id="toc-두-개의-모형" class="nav-link" data-scroll-target="#두-개의-모형"><span class="header-section-number">4.5</span> 두 개의 모형</a>
+  <ul class="collapse">
+  <li><a href="#표본-오차-모형" id="toc-표본-오차-모형" class="nav-link" data-scroll-target="#표본-오차-모형"><span class="header-section-number">4.5.1</span> 표본 오차 모형</a></li>
+  <li><a href="#구조-오차-모형-중요한-선택" id="toc-구조-오차-모형-중요한-선택" class="nav-link" data-scroll-target="#구조-오차-모형-중요한-선택"><span class="header-section-number">4.5.2</span> 구조 오차 모형 — 중요한 선택</a></li>
+  </ul></li>
+  <li><a href="#왜-나이브한-접근이-실패하는가" id="toc-왜-나이브한-접근이-실패하는가" class="nav-link" data-scroll-target="#왜-나이브한-접근이-실패하는가"><span class="header-section-number">4.6</span> 왜 나이브한 접근이 실패하는가</a>
+  <ul class="collapse">
+  <li><a href="#감쇠-편향" id="toc-감쇠-편향" class="nav-link" data-scroll-target="#감쇠-편향"><span class="header-section-number">4.6.1</span> 감쇠 편향</a></li>
+  </ul></li>
+  <li><a href="#모형-학습" id="toc-모형-학습" class="nav-link" data-scroll-target="#모형-학습"><span class="header-section-number">4.7</span> 모형 학습</a></li>
+  <li><a href="#최적-예측" id="toc-최적-예측" class="nav-link" data-scroll-target="#최적-예측"><span class="header-section-number">4.8</span> 최적 예측</a>
+  <ul class="collapse">
+  <li><a href="#두-개의-비편향-추정량" id="toc-두-개의-비편향-추정량" class="nav-link" data-scroll-target="#두-개의-비편향-추정량"><span class="header-section-number">4.8.1</span> 두 개의 비편향 추정량</a></li>
+  <li><a href="#최적-선형-비편향-예측자-blup" id="toc-최적-선형-비편향-예측자-blup" class="nav-link" data-scroll-target="#최적-선형-비편향-예측자-blup"><span class="header-section-number">4.8.2</span> 최적 선형 비편향 예측자 (BLUP)</a></li>
+  <li><a href="#해석" id="toc-해석" class="nav-link" data-scroll-target="#해석"><span class="header-section-number">4.8.3</span> 해석</a></li>
+  </ul></li>
+  <li><a href="#실증-분석-결과" id="toc-실증-분석-결과" class="nav-link" data-scroll-target="#실증-분석-결과"><span class="header-section-number">4.9</span> 실증 분석 결과</a></li>
+  <li><a href="#마무리" id="toc-마무리" class="nav-link" data-scroll-target="#마무리"><span class="header-section-number">4.10</span> 마무리</a></li>
+  <li><a href="#참고문헌" id="toc-참고문헌" class="nav-link" data-scroll-target="#참고문헌"><span class="header-section-number">4.11</span> 참고문헌</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">제4강: 소지역 실업률 추정</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<p>“하나의 자료만으로는 답을 얻을 수 없는 문제가 있다. 그럴 때 통계학은 여러 자료를 엮는 법을 가르쳐준다.”</p>
+</blockquote>
+<hr>
+<section id="우리-동네의-실업률은-얼마일까" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="우리-동네의-실업률은-얼마일까"><span class="header-section-number">4.1</span> 우리 동네의 실업률은 얼마일까</h2>
+<p>전국 실업률은 뉴스에서 매달 발표된다. 지난달 몇 퍼센트, 이번 달 몇 퍼센트. 정부 경제 정책의 핵심 지표이기 때문이다. 그런데 한 걸음 더 들어가 <strong>내가 사는 시, 내가 사는 구의 실업률</strong>은 얼마일까?</p>
+<p>이 질문에 답하기 위해 한국에서는 두 종류의 표본조사가 운영되고 있다. 이 두 조사는 서로 다른 약점을 가지고 있으며, 그 약점을 통계학적으로 결합하는 방법이 이번 강의의 주제다.</p>
+<p>제3강에서 다룬 외래 관광객 추정 문제의 자연스러운 확장이지만, 한 가지 중요한 차이가 있다. 제3강의 보조자료(KT 빅데이터)는 표본오차가 없다고 간주할 수 있었던 반면, 이번에는 보조자료 자체도 표본조사에서 나온다. 이 차이가 모형의 구조를 바꾼다.</p>
+<hr>
+</section>
+<section id="두-개의-실업률-조사" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="두-개의-실업률-조사"><span class="header-section-number">4.2</span> 두 개의 실업률 조사</h2>
+<p>한국에는 실업률을 재는 두 가지 대표적인 조사가 있다.</p>
+<p><strong>경제활동인구조사</strong>(이하 <strong>경활조사</strong>, Korean Labor Force Survey, KLF)는 통계청에서 매달 실시하는 조사로, 전국 약 7천 가구가 표본이다. 뉴스에서 듣는 월별 실업률이 여기서 나온다. 전문 조사원이 투입되어 측정의 정확도가 높지만, 표본이 작아 시군구 단위로 내려가면 추정 오차가 크다.</p>
+<p><strong>지역별 고용조사</strong>(이하 <strong>지역고용</strong>, Local Area Labor Force Survey, LALF)는 이름 그대로 지역 단위 통계를 만들기 위한 조사다. 규모가 훨씬 크다. 전국 약 20만 가구, 경활조사의 거의 30배. 다만 조사 주기는 매달이 아니라 분기별이며, 시간제 조사원을 대거 투입해야 하는 구조이므로 측정 과정에서 오차가 섞일 여지가 있다.</p>
+<p><strong>표 4.1: 두 조사의 특성 비교</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>항목</th>
+<th style="text-align: center;">경활조사 (KLF)</th>
+<th style="text-align: center;">지역고용 (LALF)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>표본 규모</td>
+<td style="text-align: center;">약 7,000 가구</td>
+<td style="text-align: center;">약 200,000 가구</td>
+</tr>
+<tr class="even">
+<td>조사 주기</td>
+<td style="text-align: center;">매월</td>
+<td style="text-align: center;">분기</td>
+</tr>
+<tr class="odd">
+<td>측정 정확도</td>
+<td style="text-align: center;">↑</td>
+<td style="text-align: center;">↓</td>
+</tr>
+<tr class="even">
+<td>표본오차</td>
+<td style="text-align: center;">↑</td>
+<td style="text-align: center;">↓</td>
+</tr>
+<tr class="odd">
+<td>주요 활용</td>
+<td style="text-align: center;">전국 단위 통계</td>
+<td style="text-align: center;">지역 단위 통계</td>
+</tr>
+<tr class="even">
+<td>조사원</td>
+<td style="text-align: center;">전문 조사원</td>
+<td style="text-align: center;">시간제 조사원 다수</td>
+</tr>
+</tbody>
+</table>
+<p>두 조사는 <strong>서로 반대의 약점</strong>을 가지고 있다. 경활조사는 측정은 정확하나 표본이 작고, 지역고용은 표본은 크나 측정오차가 존재한다. 이쯤 되면 통계학자가 던지는 질문은 자연스럽다.</p>
+<p><em>“두 조사를 결합하면, 각각보다 더 나은 추정을 할 수 있지 않을까?”</em></p>
+<hr>
+</section>
+<section id="기초-분석-산점도" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="기초-분석-산점도"><span class="header-section-number">4.3</span> 기초 분석 — 산점도</h2>
+<p>가로축에 경활조사 실업률, 세로축에 지역고용 실업률을 찍어 산점도를 그려보면, 두 값 사이에 뚜렷한 선형 관계가 나타난다. 한 쪽이 높으면 다른 쪽도 높고, 대체로 같은 방향으로 움직인다.</p>
+<p>하지만 완전히 일치하지는 않는다. 점들이 45도 선 주위에 퍼져 있는데, 이 퍼짐이 바로 <strong>두 조사 모두에 오차가 있다</strong>는 증거다. 한 쪽을 “참값” 처럼 쓰고 다른 쪽을 회귀시킬 수 없는 이유이기도 하다.</p>
+<hr>
+</section>
+<section id="네-가지-양의-이야기" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="네-가지-양의-이야기"><span class="header-section-number">4.4</span> 네 가지 양의 이야기</h2>
+<section id="기호의-정리" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="기호의-정리"><span class="header-section-number">4.4.1</span> 기호의 정리</h3>
+<p>이 문제에는 네 가지 양이 등장한다. 지역 <span class="math inline">\(i\)</span>에 대해:</p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span> — 지역 <span class="math inline">\(i\)</span>의 <strong>참 실업률</strong>, 경활조사 기준. 관측 불가능.</li>
+<li><span class="math inline">\(X_i\)</span> — 지역 <span class="math inline">\(i\)</span>의 <strong>참 실업률</strong>, 지역고용 기준. 역시 관측 불가능.</li>
+<li><span class="math inline">\(\hat{Y}_i\)</span> — 경활조사에서 얻은 추정값. <span class="math inline">\(Y_i\)</span>에 표본오차가 더해진 것.</li>
+<li><span class="math inline">\(\hat{X}_i\)</span> — 지역고용에서 얻은 추정값. <span class="math inline">\(X_i\)</span>에 표본오차가 더해진 것.</li>
+</ul>
+<p>여기서 <span class="math inline">\(Y_i\)</span>와 <span class="math inline">\(X_i\)</span>가 <strong>서로 다른 개념</strong>이라는 점이 중요하다. 경활조사와 지역고용은 조사 방식, 질문 문항, 실업의 판정 기준이 완전히 같지는 않으므로 엄밀히 말해 <span class="math inline">\(X_i \neq Y_i\)</span>이다. 물론 대체로 비슷하다 — 그래서 산점도에서 선형 관계가 나타난다.</p>
+<p>우리의 목표는 <span class="math inline">\(Y_i\)</span>, 즉 <strong>경활조사 기준 실업률</strong>을 지역별로 추정하는 것이다. 이때 <span class="math inline">\(\hat{X}_i\)</span>라는 추가 정보를 활용하여 정확도를 높이고자 한다.</p>
+</section>
+<section id="관측치와-잠재변수의-관계" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="관측치와-잠재변수의-관계"><span class="header-section-number">4.4.2</span> 관측치와 잠재변수의 관계</h3>
+<p>네 양의 관계를 그림으로 정리하면 다음과 같다.</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+X_i &amp; \longleftrightarrow &amp; Y_i \\
+\downarrow &amp; &amp; \downarrow \\
+\hat{X}_i &amp; &amp; \hat{Y}_i
+\end{array}
+\]</span></p>
+<p>위쪽은 두 잠재변수, 아래쪽은 관측된 추정값이다. 세로 방향은 <strong>표본 오차 모형</strong>을 나타내고, 가로 방향은 <strong>두 잠재변수 간의 구조 오차 모형</strong>을 나타낸다. 두 모형을 함께 고려해야 문제를 풀 수 있다.</p>
+<hr>
+</section>
+</section>
+<section id="두-개의-모형" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="두-개의-모형"><span class="header-section-number">4.5</span> 두 개의 모형</h2>
+<section id="표본-오차-모형" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="표본-오차-모형"><span class="header-section-number">4.5.1</span> 표본 오차 모형</h3>
+<p>관측값은 참값에 오차가 더해진 형태다.</p>
+<p><span class="math display">\[\begin{pmatrix} \hat{X}_i \\ \hat{Y}_i \end{pmatrix} = \begin{pmatrix} X_i \\ Y_i \end{pmatrix} + \begin{pmatrix} a_i \\ b_i \end{pmatrix} \tag{1}\]</span></p>
+<p>여기서 <span class="math inline">\(a_i\)</span>와 <span class="math inline">\(b_i\)</span>는 평균이 0인 표본오차이며, 공분산 행렬</p>
+<p><span class="math display">\[V_i = \begin{pmatrix} V(a_i) &amp; \text{Cov}(a_i, b_i) \\ \text{Cov}(a_i, b_i) &amp; V(b_i) \end{pmatrix}\]</span></p>
+<p>은 표본 추출 이론에 따라 데이터로부터 추정할 수 있다.</p>
+</section>
+<section id="구조-오차-모형-중요한-선택" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="구조-오차-모형-중요한-선택"><span class="header-section-number">4.5.2</span> 구조 오차 모형 — 중요한 선택</h3>
+<p>두 잠재변수 사이의 관계를 모형화하는 데는 두 가지 선택지가 있다.</p>
+<p><strong>선택 1: 조건부 분포</strong></p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_i + e_i, \quad e_i \sim N(0, \sigma_e^2) \tag{2}\]</span></p>
+<p><strong>선택 2: 결합 분포</strong></p>
+<p><span class="math display">\[\begin{pmatrix} X_i \\ Y_i \end{pmatrix} \sim N\left( \begin{pmatrix} \mu_x \\ \mu_y \end{pmatrix}, \begin{pmatrix} \sigma_x^2 &amp; \sigma_{xy} \\ \sigma_{xy} &amp; \sigma_y^2 \end{pmatrix} \right) \tag{3}\]</span></p>
+<p>제3강에서는 <span class="math inline">\(X_i\)</span>가 직접 관측되었으므로 조건부 분포 식 (2)를 사용하는 것이 자연스러웠다. 그러나 이번 문제에서는 <span class="math inline">\(X_i\)</span>를 관측할 수 없고 <span class="math inline">\(\hat{X}_i\)</span>만 주어진다. 이로 인해 조건부 분포를 그대로 사용하면 심각한 문제가 발생한다.</p>
+<hr>
+</section>
+</section>
+<section id="왜-나이브한-접근이-실패하는가" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="왜-나이브한-접근이-실패하는가"><span class="header-section-number">4.6</span> 왜 나이브한 접근이 실패하는가</h2>
+<section id="감쇠-편향" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="감쇠-편향"><span class="header-section-number">4.6.1</span> 감쇠 편향</h3>
+<p><span class="math inline">\(\hat{X}_i\)</span>를 <span class="math inline">\(X_i\)</span> 대신 설명변수로 사용하여 OLS 회귀를 돌리면 어떻게 될까? 편향된 결과를 얻게 된다.</p>
+<p><span class="math display">\[E[\hat{\beta}_{1,\text{OLS}}] = \frac{\text{Cov}(\hat{X}, \hat{Y})}{V(\hat{X})} = \frac{\text{Cov}(X + a,\, \beta_0 + \beta_1 X + e + b)}{V(X + a)} = \frac{\beta_1 V(X)}{V(X) + V(a)}\]</span></p>
+<p>진짜 <span class="math inline">\(\beta_1\)</span>에 <span class="math inline">\(V(X)/\{V(X)+V(a)\}\)</span>라는 1보다 작은 수가 곱해진 형태다. <strong>추정값은 반드시 참값보다 0 쪽으로 끌려간다.</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>회귀 희석 (Regression Dilution)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>설명변수에 측정오차가 있을 때 OLS 회귀계수가 0 쪽으로 편향되는 현상을 <strong>회귀 희석</strong> 또는 <strong>감쇠 편향(attenuation bias)</strong>이라고 한다. 이는 errors-in-variables 문제의 대표적 귀결로, 측정오차를 무시하고 얻은 회귀계수는 체계적으로 과소추정된다.</p>
+</div>
+</div>
+<p>이 문제를 피하려면 <span class="math inline">\(X_i\)</span>와 <span class="math inline">\(Y_i\)</span>를 <strong>대칭적으로</strong> 다루는 결합 분포 식 (3)을 써야 한다. 이 결합 분포로부터 조건부 관계 식 (2)는 유도되는 성질이지, 학습의 출발점이 아니다.</p>
+<hr>
+</section>
+</section>
+<section id="모형-학습" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="모형-학습"><span class="header-section-number">4.7</span> 모형 학습</h2>
+<p>식 (1)의 표본오차 모형과 식 (3)의 구조오차 모형을 결합하면, 관측치의 <strong>주변 분포</strong>가 다음과 같이 주어진다.</p>
+<p><span class="math display">\[\begin{pmatrix} \hat{X}_i \\ \hat{Y}_i \end{pmatrix} \sim N\left( \begin{pmatrix} \mu_x \\ \mu_y \end{pmatrix}, \begin{pmatrix} \sigma_x^2 + V(a_i) &amp; \sigma_{xy} + \text{Cov}(a_i, b_i) \\ \sigma_{xy} + \text{Cov}(a_i, b_i) &amp; \sigma_y^2 + V(b_i) \end{pmatrix} \right) \tag{4}\]</span></p>
+<p><span class="math inline">\(V(a_i)\)</span>, <span class="math inline">\(V(b_i)\)</span>, <span class="math inline">\(\text{Cov}(a_i, b_i)\)</span>는 이미 데이터로부터 추정 가능하므로, 미지 모수는 <span class="math inline">\((\mu_x, \mu_y, \sigma_x^2, \sigma_y^2, \sigma_{xy})\)</span> 다섯 개다. 다섯 개의 모수에 다섯 개의 충분통계량이 있으므로, 최대우도법으로 식별 가능하다.</p>
+<hr>
+</section>
+<section id="최적-예측" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="최적-예측"><span class="header-section-number">4.8</span> 최적 예측</h2>
+<section id="두-개의-비편향-추정량" class="level3" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="두-개의-비편향-추정량"><span class="header-section-number">4.8.1</span> 두 개의 비편향 추정량</h3>
+<p>모수 추정이 끝나면 지역별로 <span class="math inline">\(Y_i\)</span>를 예측할 수 있다. <span class="math inline">\(Y_i\)</span>에 대한 두 가지 비편향 관측치가 존재한다.</p>
+<p><strong>직접 추정량</strong>: 경활조사에서 얻은 <span class="math inline">\(\hat{Y}_i\)</span>.</p>
+<p><strong>간접 추정량 (synthetic estimator)</strong>: 지역고용 자료를 구조오차 모형을 통해 가공한 <span class="math inline">\(\beta_0 + \beta_1 \hat{X}_i\)</span>. 식 (1)과 식 (2)를 결합하여 유도할 수 있다.</p>
+<p><span class="math display">\[\beta_0 + \beta_1 \hat{X}_i = \beta_0 + \beta_1(X_i + a_i) = Y_i + \beta_1 a_i - e_i\]</span></p>
+<p>따라서 모수를 알고 있을 때 <span class="math inline">\(Y_i\)</span>에 대한 두 비편향 추정량은</p>
+<p><span class="math display">\[\begin{pmatrix} \hat{Y}_i \\ \beta_0 + \beta_1 \hat{X}_i \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix} Y_i + \begin{pmatrix} b_i \\ \beta_1 a_i - e_i \end{pmatrix} \tag{5}\]</span></p>
+<p>로 쓸 수 있으며, 오른쪽 벡터의 공분산 행렬은 모형 학습 결과로부터 얻어진다.</p>
+</section>
+<section id="최적-선형-비편향-예측자-blup" class="level3" data-number="4.8.2">
+<h3 data-number="4.8.2" class="anchored" data-anchor-id="최적-선형-비편향-예측자-blup"><span class="header-section-number">4.8.2</span> 최적 선형 비편향 예측자 (BLUP)</h3>
+<p>식 (5)의 두 추정량을 결합하는 최적 방법은 <strong>일반화 최소자승법(GLS)</strong>이다. 결과는 가중 평균 형태로 나타난다.</p>
+<p><span class="math display">\[\boxed{\hat{Y}_i^* = \alpha_i \hat{Y}_i + (1 - \alpha_i)(\beta_0 + \beta_1 \hat{X}_i)} \tag{6}\]</span></p>
+<p>여기서 가중치 <span class="math inline">\(\alpha_i\)</span>는</p>
+<p><span class="math display">\[\alpha_i = \frac{\beta_1^2 V(a_i) + \sigma_e^2 - \beta_1 \text{Cov}(a_i, b_i)}{V(b_i) + \beta_1^2 V(a_i) + \sigma_e^2 - 2\beta_1 \text{Cov}(a_i, b_i)}\]</span></p>
+<p>이다. 두 오차가 독립이면(<span class="math inline">\(\text{Cov}(a_i, b_i) = 0\)</span>) 간소화된다.</p>
+<p><span class="math display">\[\alpha_i = \frac{\beta_1^2 V(a_i) + \sigma_e^2}{V(b_i) + \beta_1^2 V(a_i) + \sigma_e^2}\]</span></p>
+</section>
+<section id="해석" class="level3" data-number="4.8.3">
+<h3 data-number="4.8.3" class="anchored" data-anchor-id="해석"><span class="header-section-number">4.8.3</span> 해석</h3>
+<p>가중치 <span class="math inline">\(\alpha_i\)</span>는 두 추정량의 오차 분산의 상대적 크기로 결정된다.</p>
+<ul>
+<li><strong>경활조사가 매우 정확할 때</strong> (<span class="math inline">\(V(b_i) \to 0\)</span>): <span class="math inline">\(\alpha_i \to 1\)</span>, 직접 추정에 거의 전적으로 의존.</li>
+<li><strong>지역고용 기반 예측이 매우 정확할 때</strong> (<span class="math inline">\(V(a_i) \to 0\)</span>, <span class="math inline">\(\sigma_e^2 \to 0\)</span>): <span class="math inline">\(\alpha_i \to 0\)</span>, 간접 추정에 비중.</li>
+</ul>
+<p>자료 스스로가 “나를 얼마나 믿어야 할지”를 말하는 구조다.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>제3강과의 연결
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>식 (6)은 제3강의 <strong>Fay-Herriot 모형</strong>과 수학적으로 동일한 구조를 갖는다. 직접 추정량과 간접 추정량의 가중 평균이며, 가중치는 분산의 상대적 크기로 결정된다. 유일한 차이는 제3강에서는 보조자료 <span class="math inline">\(X_i\)</span>를 직접 사용했지만, 제4강에서는 <span class="math inline">\(\hat{X}_i\)</span>(표본오차 포함)를 사용한다는 점이다. 이 한 차이 때문에 구조 오차 모형을 조건부가 아닌 결합 분포로 써야 했다.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="실증-분석-결과" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="실증-분석-결과"><span class="header-section-number">4.9</span> 실증 분석 결과</h2>
+<p><span class="citation" data-cites="kim2015">Kim et al. (<a href="#ref-kim2015" role="doc-biblioref">2015</a>)</span> 에서는 229개 시군구 실업률에 이 방법론을 적용하였다. 세 가지 추정량의 평균 제곱 오차(MSE) 분포를 비교한 결과는 다음과 같다.</p>
+<p><strong>표 4.2: 229개 시군구 실업률 추정량의 MSE 사분위수 분포</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 22%">
+<col style="width: 20%">
+<col style="width: 22%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>추정량</th>
+<th style="text-align: center;">1사분위</th>
+<th style="text-align: center;">중위수</th>
+<th style="text-align: center;">3사분위</th>
+<th style="text-align: center;">평균</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>경활조사만 (KLF)</td>
+<td style="text-align: center;">0.000063</td>
+<td style="text-align: center;">0.000121</td>
+<td style="text-align: center;">0.000240</td>
+<td style="text-align: center;">0.000248</td>
+</tr>
+<tr class="even">
+<td>지역고용만 (LALF)</td>
+<td style="text-align: center;">0.000112</td>
+<td style="text-align: center;">0.000133</td>
+<td style="text-align: center;">0.000170</td>
+<td style="text-align: center;">0.000148</td>
+</tr>
+<tr class="odd">
+<td><strong>GLS (경활+지역고용)</strong></td>
+<td style="text-align: center;"><strong>0.000044</strong></td>
+<td style="text-align: center;"><strong>0.000074</strong></td>
+<td style="text-align: center;"><strong>0.000121</strong></td>
+<td style="text-align: center;"><strong>0.000089</strong></td>
+</tr>
+</tbody>
+</table>
+<p>두 조사를 GLS 로 결합한 결과, 경활조사 단독 대비 평균 MSE 가 <strong>약 64% 감소</strong>했다. 세 배 가까이 정확해진 셈이다. MSE 추정에는 jackknife 방법을 사용했는데, 이는 매 지역을 한 번씩 제거하며 재추정하는 방식이다.</p>
+<p>주목할 점은 이 결과가 <strong>새로운 조사를 더 실시하지 않고</strong> 얻어졌다는 것이다. 기존에 따로 운영되던 두 조사를 통계학적으로 결합했을 뿐이다. 비용 한 푼 더 쓰지 않고 정확도를 세 배 가까이 올린 셈이며, 이것은 통계학이 할 수 있는 일의 전형적인 예다.</p>
+<hr>
+</section>
+<section id="마무리" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="마무리"><span class="header-section-number">4.10</span> 마무리</h2>
+<p>제3강과 제4강을 한 쌍으로 놓고 보면, 현대 통계학의 한 가지 중요한 흐름이 보인다.</p>
+<ul>
+<li><strong>제3강</strong>: 서베이 + 빅데이터의 결합. 보조자료가 편향은 있으나 표본오차는 없는 경우.</li>
+<li><strong>제4강</strong>: 서베이 + 서베이의 결합. 보조자료도 표본오차를 가지는 경우.</li>
+</ul>
+<p>두 경우 모두 공통 원리는 <strong>소지역 단위 모형(area-level model)</strong>을 통해 서로 다른 장점을 가진 자료를 결합하는 것이다. 다만 보조자료에 오차가 포함되면 구조 오차 모형을 <strong>결합 분포</strong>로 써야 한다는 차이가 있다. 조건부 분포를 그대로 쓰면 회귀 희석이라는 편향을 피할 수 없기 때문이다.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>결론
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>설명변수에 표본오차가 있을 때는 조건부 분포 모형 대신 결합 분포 모형을 사용해야 한다. 이를 통해 errors-in-variables 편향을 피하면서 두 자료원의 정보를 올바르게 결합할 수 있다.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>통계학자의 관점
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>완벽한 데이터 하나로부터 답을 뽑아내는 일은 드물다. 현실의 자료는 대체로 <strong>결함을 가진 여러 조각</strong>으로 존재한다. 통계학자의 일은 그 결함의 패턴을 이해하고, 각 자료를 얼마나 믿어야 할지 결정하는 것이다.</p>
+<p>이 판단을 주관이 아니라 <strong>자료 스스로가 말하게 만드는 것</strong> — 가중치 <span class="math inline">\(\alpha_i\)</span>가 분산 비율로 자동으로 결정된다는 사실 — 이 통계학의 아름다움이다.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="참고문헌" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="참고문헌"><span class="header-section-number">4.11</span> 참고문헌</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-kim2015" class="csl-entry" role="listitem">
+Kim, Jae Kwang, Seunghwan Park, and Seo-young Kim. 2015. <span>“Small Area Estimation Combining Information from Several Sources.”</span> <em>Survey Methodology</em> 41 (1): 21–36.
+</div>
+<div id="ref-kim2011" class="csl-entry" role="listitem">
+Kim, Jae Kwang, and C. L. Yu. 2011. <span>“A Semi-Parametric Estimation of Mean Functionals with Non-Ignorable Missing Data.”</span> <em>Journal of the American Statistical Association</em> 106: 157–65.
+</div>
+<div id="ref-riddles2016" class="csl-entry" role="listitem">
+Riddles, Misty K., Jae Kwang Kim, and Jongho Im. 2016. <span>“Propensity Score Adjustment Method for Nonignorable Nonresponse.”</span> <em>Journal of Survey Statistics and Methodology</em> 4: 215–45.
+</div>
+<div id="ref-wang2014" class="csl-entry" role="listitem">
+Wang, S., J. Shao, and Jae Kwang Kim. 2014. <span>“An Instrumental Variable Approach for Identification and Estimation with Nonignorable Nonresponse.”</span> <em>Statistica Sinica</em> 24: 1097–116.
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./week3.html" class="pagination-link" aria-label="제3강: 외래 관광객수 추정">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">제3강: 외래 관광객수 추정</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

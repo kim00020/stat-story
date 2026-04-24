@@ -1,0 +1,1830 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{Noto Serif CJK KR}
+  \setmathfont[]{Latin Modern Math}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\usepackage{kotex}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={통계학 산책},
+  pdfauthor={김재광},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{통계학 산책}
+\author{김재광}
+\date{}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+
+\bookmarksetup{startatroot}
+
+\chapter*{머리말}\label{uxba38uxb9acuxb9d0}
+\addcontentsline{toc}{chapter}{머리말}
+
+\markboth{머리말}{머리말}
+
+이 책은 유튜브 채널 \textbf{통계학 산책}의 강의 내용을 바탕으로 엮은
+것입니다.
+
+통계학을 전공하지 않은 독자도 읽을 수 있도록, 수식보다 직관적 이해를
+우선하되 핵심 논리는 엄밀하게 서술하였습니다. 각 강의는 실제 데이터와
+사례에서 출발하여, 그 뒤에 숨어 있는 통계학적 원리를 자연스럽게 드러내는
+방식으로 구성하였습니다.
+
+\section*{이 책의 구성}\label{uxc774-uxcc45uxc758-uxad6cuxc131}
+\addcontentsline{toc}{section}{이 책의 구성}
+
+\markright{이 책의 구성}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+강의 & 주제 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+제1강 & 출구조사의 추억 --- MAR 가정과 무응답 편향 \\
+제2강 & 집회 참가자수 추정 --- 페르미 추정과 현장 샘플링 \\
+제3강 & 외래 관광객수 추정 --- 소지역 추정과 Fay-Herriot 모형 \\
+제4강 & 소지역 실업률 추정 --- 측정오차와 자료 결합 \\
+\end{longtable}
+}
+
+강의가 추가될 때마다 이 목록은 업데이트됩니다.
+
+\section*{대상 독자}\label{uxb300uxc0c1-uxb3c5uxc790}
+\addcontentsline{toc}{section}{대상 독자}
+
+\markright{대상 독자}
+
+\begin{itemize}
+\tightlist
+\item
+  통계학에 관심 있는 일반 독자
+\item
+  데이터 분석을 공부하는 학부생
+\item
+  설문·여론조사 실무자
+\end{itemize}
+
+\section*{유튜브 채널}\label{uxc720uxd29cuxbe0c-uxcc44uxb110}
+\addcontentsline{toc}{section}{유튜브 채널}
+
+\markright{유튜브 채널}
+
+각 챕터에 대응하는 강의 영상은 아래 재생목록에서 볼 수 있습니다. 책과
+영상을 함께 활용하시면 더 효과적입니다.
+
+\href{https://youtube.com/playlist?list=PLpX4d5n0gRfQe0RpCR-jH8b4o0iHPeXaa&si=4MVFil9Cb7rMbr6n}{▶
+통계학 산책 재생목록 바로가기}
+
+\bookmarksetup{startatroot}
+
+\chapter{제1강: 출구조사의
+추억}\label{uxc81c1uxac15-uxcd9cuxad6cuxc870uxc0acuxc758-uxcd94uxc5b5}
+
+\begin{quote}
+``통계학은 데이터에서 진실을 끌어내는 학문이다. 그러나 진실을
+끌어내려면, 먼저 데이터가 우리에게 거짓말을 하고 있다는 사실을 알아야
+한다.''
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{출구조사란
+무엇인가}\label{uxcd9cuxad6cuxc870uxc0acuxb780-uxbb34uxc5c7uxc778uxac00}
+
+선거 당일, 투표소 앞에는 방송사 조사원들이 서 있다. 투표를 마치고 나오는
+유권자들에게 ``어느 당에 투표하셨나요?''라고 묻는다. 이것이
+\textbf{출구조사(exit poll)}다.
+
+출구조사의 목적은 하나다. 개표가 시작되기 전에 --- 때로는 투표가 끝나는
+순간 --- 당선자를 예측하는 것이다. 방송사들이 밤새 생중계를 이어가면서
+``○○ 당선 유력''이라는 자막을 띄울 수 있는 것은 이 조사 덕분이다.
+
+그런데 출구조사는 때로 크게 빗나간다. 왜 그럴까? 단순히 표본이
+부족해서일까, 아니면 더 구조적인 이유가 있을까?
+
+이 강의는 그 질문에서 시작한다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{2012년 강동갑
+사례}\label{uxb144-uxac15uxb3d9uxac11-uxc0acuxb840}
+
+\subsection{데이터}\label{uxb370uxc774uxd130}
+
+2012년 제19대 국회의원 선거, 서울 강동갑 선거구의 출구조사 자료를
+살펴보자.
+
+\textbf{표 1.1: 2012 국회의원 선거 강동갑 출구조사 표본 자료}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1017}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1356}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1695}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.2034}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1017}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1864}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1017}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+성별
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+연령대
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+새누리당
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+통합민주당
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+기타
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+응답 거부
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+총합
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+남성 & 20-29 & 93 & 115 & 4 & 28 & 240 \\
+남성 & 30-39 & 104 & 233 & 8 & 82 & 427 \\
+남성 & 40-49 & 146 & 295 & 5 & 49 & 495 \\
+남성 & 50- & 560 & 350 & 3 & 174 & 1,087 \\
+여성 & 20-29 & 106 & 159 & 8 & 62 & 335 \\
+여성 & 30-39 & 129 & 242 & 5 & 70 & 446 \\
+여성 & 40-49 & 170 & 262 & 5 & 69 & 506 \\
+여성 & 50- & 501 & 218 & 7 & 211 & 937 \\
+\textbf{총합} & & \textbf{1,809} & \textbf{1,874} & \textbf{45} &
+\textbf{745} & \textbf{4,473} \\
+\textbf{개표 결과} & & \textbf{62,489} & \textbf{57,909} &
+\textbf{1,624} & & \textbf{122,022} \\
+\end{longtable}
+}
+
+출구조사에서 샘플로 뽑힌 사람은 총 4,473명이 선정되었다. 하지만 이 중
+745명, 약 \textbf{17\%}가 응답을 거부했다. 다른 조사와는 달리 출구조사는
+참값을 알게 된다. 개표를 통해 최종 결과가 나오기 때문이다. 따라서 이
+표의 맨 아래 줄의 개표 결과와 비교하는 것이 이 분석의 핵심이다.
+
+\subsection{단순 분석의
+실패}\label{uxb2e8uxc21c-uxbd84uxc11duxc758-uxc2e4uxd328}
+
+출구조사 자료를 분석하여 각 정당별 최종 득표수를 예측하고자 한다. 이
+경우 가장 단순한 방법은 응답 거부자 745명을 제외하고, 응답자
+3,728명만으로 지지율을 계산하는 것이다.
+
+\textbf{표 1.2: 단순 분석 결과 (\%)}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lccc@{}}
+\toprule\noalign{}
+방법론 & 새누리당 & 통합민주당 & 기타 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+무보정 & 48.5 & 50.3 & 1.2 \\
+참값 & 51.2 & 47.5 & 1.3 \\
+\end{longtable}
+}
+
+결과는 충격적이다. 출구조사는 통합민주당 50.3\%, 새누리당 48.5\%로
+예측했지만, 실제 개표 결과는 새누리당 51.2\%, 통합민주당 47.5\%였다.
+\textbf{당선자가 뒤바뀐 것이다.}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{인구학적 보정의 시도와
+한계}\label{uxc778uxad6cuxd559uxc801-uxbcf4uxc815uxc758-uxc2dcuxb3c4uxc640-uxd55cuxacc4}
+
+\subsection{성·연령대
+보정이란}\label{uxc131uxc5f0uxb839uxb300-uxbcf4uxc815uxc774uxb780}
+
+응답 거부자들을 단순히 제외하는 것이 문제라면, 이들의 투표 성향을
+\textbf{예측}해서 채워 넣으면 어떨까? 이것이 인구학적 보정의 기본
+아이디어다.
+
+``같은 성별, 같은 연령대의 응답자들과 비슷하게 투표했을 것이다''라고
+가정하고, 거부자 수에 해당 그룹의 응답자 지지율을 곱해 예측값을 만드는
+것이다.
+
+\textbf{예시: 여성 50대 이상 그룹}
+
+이 그룹의 응답자는 726명(= 501 + 218 + 7)이었고, 응답 거부자는
+211명이었다.
+
+\[P(\text{새누리당} \mid \text{여성, 50대 이상}) = \frac{501}{726}\]
+\[P(\text{통합민주당} \mid \text{여성, 50대 이상}) = \frac{218}{726}\]
+\[P(\text{기타} \mid \text{여성, 50대 이상}) = \frac{7}{726}\]
+
+이 비율을 거부자 211명에 적용하면:
+
+\begin{itemize}
+\tightlist
+\item
+  새누리당 지지자 예측: \(211 \times \frac{501}{726} \approx 145.6\)명
+\item
+  통합민주당 지지자 예측: \(211 \times \frac{218}{726} \approx 63.4\)명
+\item
+  기타 예측: \(211 \times \frac{7}{726} \approx 2.0\)명
+\end{itemize}
+
+이렇게 채워 넣은 값을 통계학에서는 \textbf{대체값(imputation
+value)}이라고 부른다.
+
+\subsection{보정의 결과}\label{uxbcf4uxc815uxc758-uxacb0uxacfc}
+
+\textbf{표 1.3: 인구학적 보정 결과 (\%)}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lccc@{}}
+\toprule\noalign{}
+방법론 & 새누리당 & 통합민주당 & 기타 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+무보정 & 48.5 & 50.3 & 1.2 \\
+성·연령대 보정 & 49.0 & 49.8 & 1.2 \\
+\textbf{참값} & \textbf{51.2} & \textbf{47.5} & \textbf{1.3} \\
+\end{longtable}
+}
+
+보정 후 새누리당 지지율이 48.5\%에서 49.0\%로 올라갔다. 조금 나아지긴
+했지만, \textbf{여전히 당선자 예측은 틀렸다.}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{결론}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+단순한 인구학적 변수를 이용한 보정 방법으로는 출구조사 응답 거부자의
+편향을 제대로 제거할 수 없다.
+
+\end{tcolorbox}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{통계학적 접근}\label{uxd1b5uxacc4uxd559uxc801-uxc811uxadfc}
+
+\subsection{기호 정의}\label{uxae30uxd638-uxc815uxc758}
+
+\begin{itemize}
+\tightlist
+\item
+  \(Y\): 지지 정당 (우리가 알고 싶은 변수)
+\item
+  \(X\): 인구학적 변수 (성별, 연령대 --- 관측 가능)
+\item
+  \(R\): 응답 협조 지시 변수
+\end{itemize}
+
+\[R = \begin{cases} 1 & \text{if 응답} \\ 0 & \text{if 거절} \end{cases}\]
+
+\subsection{MAR 가정과 그
+한계}\label{mar-uxac00uxc815uxacfc-uxadf8-uxd55cuxacc4}
+
+성·연령대 보정이 암묵적으로 가정하는 것이 있다. 통계학에서
+\textbf{MAR(Missing at Random, 임의 결측)}이라고 부르는 가정이다.
+
+\[P(Y \mid X, R=0) = P(Y \mid X, R=1) \tag{MAR}\]
+
+한국말로 풀면: ``\(X\)가 같다면, 응답 거부자와 응답자의 투표 성향이
+같다.''
+
+이 가정이 성립하면 인구학적 보정은 완벽하게 작동한다. 문제는 \textbf{이
+가정이 현실에서 성립하지 않을 수 있다}는 것이다.
+
+강동갑 사례에서는 아마도 이런 일이 있었을 것이다: 같은 성별, 같은
+연령대이더라도 \textbf{새누리당 지지자들이 응답을 더 많이 거부했다.} 그
+결과 응답자 중 새누리당 지지자의 비율이 실제보다 낮게 잡혔고, 집계
+결과가 왜곡되었다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{응답 거부자 예측
+모형}\label{uxc751uxb2f5-uxac70uxbd80uxc790-uxc608uxce21-uxbaa8uxd615}
+
+\subsection{베이즈 정리의
+활용}\label{uxbca0uxc774uxc988-uxc815uxb9acuxc758-uxd65cuxc6a9}
+
+베이즈 정리를 이용하면 \(P(Y \mid X, R=0)\)과 \(P(Y \mid X, R=1)\)을
+각각 쓸 수 있다.
+
+\[P(Y \mid X, R=0) = \frac{P(R=0 \mid X,Y)\,P(Y \mid X)}{P(R=0 \mid X)} \tag{1}\]
+
+\[P(Y \mid X, R=1) = \frac{P(R=1 \mid X,Y)\,P(Y \mid X)}{P(R=1 \mid X)} \tag{2}\]
+
+식 (1)을 식 (2)로 나누면 \(P(Y \mid X)\)가 약분되어 다음을 얻는다.
+
+\[\frac{P(Y \mid X, R=0)}{P(Y \mid X, R=1)} = \underbrace{\frac{P(R=0 \mid X,Y)}{P(R=1 \mid X,Y)}}_{\displaystyle\text{Nonresponse odds}} \cdot \underbrace{\frac{P(R=1 \mid X)}{P(R=0 \mid X)}}_{\displaystyle Y\text{와 무관}} \tag{3}\]
+
+\textbf{두 번째 항은 \(Y\)와 무관하다.} 따라서 응답 거부자와 응답자의
+투표 성향 차이를 결정하는 것은 오직 첫 번째 항, \textbf{Nonresponse
+odds}다.
+
+\subsection{예측 공식의
+도출}\label{uxc608uxce21-uxacf5uxc2dduxc758-uxb3c4uxcd9c}
+
+Nonresponse odds 함수를 다음과 같이 정의하자.
+
+\[O(X, Y) \equiv \frac{P(R=0 \mid X,Y)}{P(R=1 \mid X,Y)}\]
+
+그러면 식 (3)으로부터 다음의 \textbf{예측 공식}을 유도할 수 있다.
+
+\[P(Y=y \mid x, R=0) = P(Y=y \mid x, R=1) \cdot \frac{O(x,y)}{E[O(x,Y) \mid x, R=1]} \tag{4}\]
+
+응답 거부자의 투표 성향은, 응답자의 투표 성향을 출발점으로 삼아
+\textbf{Nonresponse odds 비율만큼 재조정}한 것이다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Exponential Tilting Model}\label{exponential-tilting-model}
+
+\subsection{로지스틱 모형
+가정}\label{uxb85cuxc9c0uxc2a4uxd2f1-uxbaa8uxd615-uxac00uxc815}
+
+응답 협조 확률이 \textbf{로지스틱 회귀 모형}을 따른다고 가정하자.
+
+\[P(R=1 \mid X, Y) = \frac{\exp(\beta_0 + \beta_1 X + \beta_2 Y)}{1 + \exp(\beta_0 + \beta_1 X + \beta_2 Y)}\]
+
+이것을 식 (4)에 대입하면 \(\beta_0\)과 \(\beta_1\) 항이 상쇄되어 다음을
+얻는다.
+
+\[P(Y=y \mid x, R=0) = P(Y=y \mid x, R=1) \cdot \frac{\exp(-\beta_2 y)}{E[\exp(-\beta_2 Y) \mid x, R=1]} \tag{5}\]
+
+핵심은 \textbf{\(\beta_2\) 하나}다. 이 모형은 Kim and Yu (2011)에서 처음
+소개되었으며, \textbf{Exponential tilting model}이라고 부른다.
+
+\subsection{β₂의 해석}\label{ux3b2ux2082uxc758-uxd574uxc11d}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}clc@{}}
+\toprule\noalign{}
+\(\beta_2\)의 값 & 의미 & 편향 방향 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(= 0\) & MAR 성립, 인구학적 보정으로 충분 & 없음 \\
+\(> 0\) & 새누리당 지지자가 응답을 더 잘 함 & 새누리당 과대 추정 \\
+\(< 0\) & 새누리당 지지자가 응답을 더 많이 거부 & 새누리당 과소 추정 \\
+\end{longtable}
+}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+2012년 강동갑의 상황은 \(\beta_2 < 0\)의 경우였다. 이것이 인구학적
+보정을 아무리 해도 편향이 제거되지 않았던 근본적인 이유다.
+
+\end{tcolorbox}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{실증 분석 결과}\label{uxc2e4uxc99d-uxbd84uxc11d-uxacb0uxacfc}
+
+\subsection{강동갑 선거구}\label{uxac15uxb3d9uxac11-uxc120uxac70uxad6c}
+
+Riddles, Kim, and Im (2016)은 식 (5)의 \(\beta_2\)를 \textbf{EM
+알고리즘}으로 추정하는 방법론을 개발하고 강동갑 데이터에 적용했다.
+
+\textbf{표 1.4: 강동갑 출구조사 분석 결과 (\%)}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lccc@{}}
+\toprule\noalign{}
+방법론 & 새누리당 & 통합민주당 & 기타 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+무보정 & 48.5 & 50.3 & 1.2 \\
+성·연령대 보정 & 49.0 & 49.8 & 1.2 \\
+\textbf{제안된 방법론} & \textbf{51.0} & \textbf{47.7} & \textbf{1.2} \\
+참값 & 51.2 & 47.5 & 1.3 \\
+\end{longtable}
+}
+
+제안된 방법론은 참값 51.2\%에 \textbf{오차 0.2\%포인트} 이내로 접근했다.
+
+\subsection{서울 전체 48개
+지역구}\label{uxc11cuxc6b8-uxc804uxccb4-48uxac1c-uxc9c0uxc5eduxad6c}
+
+\textbf{표 1.5: 서울 전체 출구조사 분석 결과 (48개 지역구, 1위 예측
+횟수)}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lccc@{}}
+\toprule\noalign{}
+방법론 & 새누리당 & 통합민주당 & 기타 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+무보정 & 10 & 36 & 2 \\
+성·연령대 보정 & 10 & 36 & 2 \\
+\textbf{제안된 방법론} & \textbf{15} & \textbf{29} & \textbf{4} \\
+참값 & 16 & 30 & 2 \\
+\end{longtable}
+}
+
+무보정과 인구학적 보정은 결과가 동일했다. 두 방법 모두 MAR 가정에
+의존하기 때문이다. 제안된 방법론은 참값(새누리당 16석)에 훨씬 가까운
+15석을 예측했다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{마무리}\label{uxb9c8uxbb34uxb9ac}
+
+이 연구의 출발점은 저자의 2006년 출구조사 자문단 참여였다. 당시는 연세대
+응용통계학과에 근무할 시절이라 한국의 기관들과의 협력이 수월했다. SBS
+방송사의 연락으로 자문단에 참여하게 되었는데 이번 무응답 문제에 대해
+알게 되었다. MAR 가정이 성립하지 않는다는 것을 알고 이를 어떻게 해결할수
+있을지를 고민하기 시작했다.
+
+그후 미국으로 이민을 오게 되었고 당시의 문제를 좀더 깊이있게 고민할
+기회가 생겼다. 그 연구 결과는 Kim and Yu (2011)과 Wang et al.~(2014)으로
+이어졌다. 두 논문은 저자의 논문 중 가장 많이 인용되는 논문이 되었고,
+MAR이 성립하지 않는 어려운 상황에서도 합리적인 추론이 가능하다는
+돌파구를 제시했다는 점에서 의미가 있다.
+
+마지막으로 한 가지 생각을 공유하고 싶다.
+
+출구조사의 성공을 ``1등을 맞추었느냐''로 판단하는 것은 방송사의
+관점이다. 통계학자의 관점은 다르다.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{통계학자의 관점}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+\textbf{1등을 틀리더라도 오차가 1\textasciitilde2\%인 예측}이,
+\textbf{1등을 맞추더라도 오차가 10\% 이상인 예측}보다 통계학적으로 훨씬
+바람직하다.
+
+단순히 결과를 맞추는 것보다, \textbf{결과를 얻어내는 과정이
+합리적인가}를 더 중요하게 봐야 한다.
+
+\end{tcolorbox}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{참고문헌}\label{uxcc38uxace0uxbb38uxd5cc}
+
+Kim, J. K. and Yu, C. L. (2011). A semi-parametric estimation of mean
+functionals with non-ignorable missing data. \emph{Journal of the
+American Statistical Association}, \textbf{106}, 157--165.
+
+Riddles, M. K., Kim, J. K. and Im, J. (2016). Propensity score
+adjustment method for nonignorable nonresponse. \emph{Journal of Survey
+Statistics and Methodology}, \textbf{4}, 215--245.
+
+Wang, S., Shao, J. and Kim, J. K. (2014). An instrumental variable
+approach for identification and estimation with nonignorable
+nonresponse. \emph{Statistica Sinica}, \textbf{24}, 1097--1116.
+
+\bookmarksetup{startatroot}
+
+\chapter{제2강: 집회 참가자수
+추정}\label{uxc81c2uxac15-uxc9d1uxd68c-uxcc38uxac00uxc790uxc218-uxcd94uxc815}
+
+\begin{quote}
+``데이터는 답을 주지 않는다. 올바른 질문을 던질 때 비로소 답이 보인다.''
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{같은 집회, 다른
+숫자}\label{uxac19uxc740-uxc9d1uxd68c-uxb2e4uxb978-uxc22buxc790}
+
+2016년 11월 12일, 광화문 일대에서 대규모 촛불집회가 열렸다. 그날
+연합뉴스의 헤드라인은 이렇게 전했다.
+
+\begin{quote}
+``사상 최대 촛불집회\ldots{} 주최측-경찰 추산인원 차이 여전''
+\end{quote}
+
+주최 측은 \textbf{100만 명}, 경찰은 \textbf{26만 명}. 같은 집회, 같은
+날, 같은 장소를 두고 네 배에 가까운 차이가 났다. 왜 그럴까? 그리고 어느
+쪽이 더 맞을까?
+
+이 강의는 그 질문에서 시작한다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{두 가지 추산
+방식}\label{uxb450-uxac00uxc9c0-uxcd94uxc0b0-uxbc29uxc2dd}
+
+\subsection{주최 측: 면적 기반 누적
+인원}\label{uxc8fcuxcd5c-uxce21-uxba74uxc801-uxae30uxbc18-uxb204uxc801-uxc778uxc6d0}
+
+주최 측의 방식은 두 단계로 이루어진다.
+
+첫째, 집회 장소의 전체 면적(\(m^2\))을 구한다. 둘째, 단위 면적당 밀집
+인원을 곱한다. 여기에 시간대별 유동 인구를 누적하여 집회 전체 시간 동안
+현장을 거쳐 간 총인원을 발표한다.
+
+\subsection{경찰 측: 스냅샷 기반 실시간
+집계}\label{uxacbduxcc30-uxce21-uxc2a4uxb0c5uxc0f7-uxae30uxbc18-uxc2e4uxc2dcuxac04-uxc9d1uxacc4}
+
+경찰 측은 집회가 가장 밀집된 \textbf{특정 시점}을 기준으로, 경찰이 통제
+가능한 주요 거점 위주로 인원을 집계한다.
+
+\subsection{측정 대상 자체가
+다르다}\label{uxce21uxc815-uxb300uxc0c1-uxc790uxccb4uxac00-uxb2e4uxb974uxb2e4}
+
+두 방식의 근본적인 차이는 \textbf{무엇을 세느냐}에 있다. 주최 측은 집회
+시간 전체를 거쳐 간 \textbf{누적 인원}을, 경찰 측은 특정 시점에 한 곳에
+있는 \textbf{동시 인원}을 측정한다. 두 수치가 다른 것은 당연하다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{페르미 추정법과 그
+한계}\label{uxd398uxb974uxbbf8-uxcd94uxc815uxbc95uxacfc-uxadf8-uxd55cuxacc4}
+
+면적 기반 집계를 \textbf{페르미 추정법}이라 부른다. 공식은 간단하다.
+
+\[\text{전체 인원} = \text{전체 면적} \times \text{단위 면적당 밀도}\]
+
+문제는 \textbf{밀도 설정}에 있다. 주최 측은 1\(m^2\)당
+3\textasciitilde4명으로, 경찰 측은 1\textasciitilde2명으로 가정했다.
+가정 하나의 차이가 최종 추정치를 몇 배나 벌려놓는다.
+
+페르미 추정은 빠르고 직관적이지만, 핵심 가정이 주관적 판단에 의존한다는
+근본적인 한계를 가진다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{지하철 승객 통계
+이용법}\label{uxc9c0uxd558uxcca0-uxc2b9uxac1d-uxd1b5uxacc4-uxc774uxc6a9uxbc95}
+
+페르미 추정의 한계를 보완하려는 시도 중 하나가 지하철 승객 통계를
+활용하는 방법이다. 2016년 11월 13일 연합뉴스는 다음과 같이 보도했다.
+
+\begin{quote}
+광화문광장과 서울광장 인근 지하철역 12곳의 집회 당일 하차 승객은
+\textbf{86만 4,596명}으로, 전년도 같은 요일 평균보다 \textbf{51만
+4,940명} 많았다. 지하철 수송분담률(약 39\%)을 고려하면 집회 참석자는 총
+\textbf{132만 명}으로 추산된다.
+\end{quote}
+
+공식으로 쓰면 이렇다.
+
+\[514{,}940 \div 0.39 \approx 1{,}320{,}359\]
+
+\subsection{논리 구조를
+해부해보면}\label{uxb17cuxb9ac-uxad6cuxc870uxb97c-uxd574uxbd80uxd574uxbcf4uxba74}
+
+이 추론에는 두 단계가 있다.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  전체 하차 승객 86만 명 → 집회 참석 지하철 이용자 51만 5천 명 (전년
+  대비 증가분)
+\item
+  집회 참석 지하철 이용자 51만 5천 명 → 전체 집회 참석자 132만 명
+  (수송분담률 적용)
+\end{enumerate}
+
+두 번째 단계에서 핵심 가정이 등장한다. \textbf{집회 참석자의 39\%가
+지하철을 이용했다}는 것이다. 그런데 이 39\%는 2014년의 서울시 전체 평균
+수송분담률이다. 대규모 집회가 열리는 날, 많은 사람이 대중교통을
+선택한다. 이 날의 지하철 이용률이 평상시와 같다는 가정은 현실적으로
+적절하지 않다.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{핵심 문제}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+평상시의 지하철 수송분담률 39\%를 집회 당일에 그대로 적용하는 것은
+타당하지 않다. \textbf{이 비율 자체를 데이터로부터 추정해야 한다.}
+
+\end{tcolorbox}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{통계학적 접근: 현장
+샘플링}\label{uxd1b5uxacc4uxd559uxc801-uxc811uxadfc-uxd604uxc7a5-uxc0d8uxd50cuxb9c1}
+
+\subsection{아이디어}\label{uxc544uxc774uxb514uxc5b4}
+
+해결책은 명쾌하다. 집회 당일의 지하철 이용 비율을 \textbf{현장에서 직접
+조사}하여 추정 공식에 반영하자는 것이다.
+
+\subsection{Plan A vs Plan B}\label{plan-a-vs-plan-b}
+
+1,000명을 조사할 예산 하에서 두 가지 플랜이 검토되었다.
+
+\textbf{Plan A}: 조사원 전원을 집회 현장에 배치하여 참석자에게 이동
+수단을 묻는다. 모수는 하나: \(P(X=1 \mid Y=1)\) (집회 참석자 중 지하철
+이용 비율).
+
+\textbf{Plan B}: 조사원을 두 집단으로 나눈다. 한 팀은 지하철 역에서
+하차객에게 집회 참석 여부를 묻고(\(P(Y=1 \mid X=1)\) 추정), 다른 팀은
+집회 현장에서 참석자에게 이동 수단을 묻는다(\(P(X=1 \mid Y=1)\) 추정).
+두 모수를 동시에 추정한다.
+
+최종적으로 \textbf{Plan B}가 채택되었다. 두 모수를 동시에 추정함으로써
+이론적으로 더 효율적인 추정이 가능하기 때문이다.
+
+\subsection{추정 공식}\label{uxcd94uxc815-uxacf5uxc2dd}
+
+모집단을 집회 참석 여부 \(Y\)와 지하철 이용 여부 \(X\)로 분류하면 다음
+표를 얻는다.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lccc@{}}
+\toprule\noalign{}
+집회 참석 & 지하철 이용 \((X=1)\) & 다른 교통수단 \((X=0)\) & 총합 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+참석 \((Y=1)\) & \(N_{11}\) & \(N_{01}\) & \(\textbf{N}_{+1}\) \\
+불참석 \((Y=0)\) & \(N_{10}\) & \(N_{00}\) & \(N_{+0}\) \\
+총합 & \(\textbf{N}_{1+}\) & \(N_{0+}\) & \(N_{++}\) \\
+\end{longtable}
+}
+
+우리의 목표는 \(N_{+1}\), 즉 집회 총 참석자 수를 추정하는 것이다. 다음
+등식을 이용한다.
+
+\[N_{+1} = N_{++} \cdot P(Y=1) = N_{++} \cdot P(X=1) \cdot \frac{P(Y=1 \mid X=1)}{P(X=1 \mid Y=1)}\]
+
+\(N_{++} \cdot P(X=1) = N_{1+}\) (지하철 총 하차 승객수)는 서울시 공식
+통계로 알 수 있다. 따라서:
+
+\[\boxed{N_{+1} = N_{1+} \cdot \frac{P(Y=1 \mid X=1)}{P(X=1 \mid Y=1)}}\]
+
+두 비율 \(P(Y=1 \mid X=1)\)과 \(P(X=1 \mid Y=1)\)을 현장 조사로 추정하면
+된다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{분석 결과}\label{uxbd84uxc11d-uxacb0uxacfc}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lccc@{}}
+\toprule\noalign{}
+집회 참석 & 지하철 이용 & 다른 교통수단 & 총합 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+참석 & 55만 & 23만 & \textbf{78만} \\
+불참석 & 35만 & --- & --- \\
+총합 & 90만 & --- & --- \\
+\end{longtable}
+}
+
+Plan B는 ratio 추정의 형태이므로 \textbf{신뢰구간 계산도 가능}하다는
+장점이 있다.
+
+흥미로운 뒷이야기가 있다. 이 조사를 의뢰한 언론사는 비용을 지불하고도
+\textbf{여론을 의식하여 최종 결과를 공개하지 않았다}. 통계 결과의 투명한
+공개가 얼마나 중요한지를 역설적으로 보여주는 사례다.
+
+\subsection{과소추정
+가능성}\label{uxacfcuxc18cuxcd94uxc815-uxac00uxb2a5uxc131}
+
+약 78만 명이라는 추정치는 실제보다 다소 \textbf{과소추정}되었을 가능성이
+있다. Plan B에서 지하철 역의 혼잡한 환경은 조사 원칙대로 인터뷰를
+진행하기 어렵게 만들었고, 이로 인한 \textbf{비표본 오차(non-sampling
+error)}가 결과에 영향을 미쳤을 것으로 판단된다.
+
+이는 Plan A와 Plan B의 트레이드오프를 다시 생각하게 한다. Plan A는
+조사원을 한 곳에만 배치하므로 조사원 관리가 용이하고 비표본 오차를 줄일
+수 있다. \textbf{이론적으로 우수한 설계가 현장에서 반드시 최선의 결과를
+보장하지는 않는다.}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{모의실험: 적정 표본 수
+결정}\label{uxbaa8uxc758uxc2e4uxd5d8-uxc801uxc815-uxd45cuxbcf8-uxc218-uxacb0uxc815}
+
+방법론의 정확성을 검증하기 위해 모의실험을 실시했다. 모집단을 설정한 뒤
+반복 샘플링을 통해 집회 참석자 수 \(\hat{\theta}\)를 추정하고, 그 오차를
+RMSE로 측정했다.
+
+\[\text{RMSE}(\hat{\theta}) = \left[\mathbb{E}\left\{(\hat{\theta} - \theta)^2\right\}\right]^{1/2}\]
+
+결과는 명확했다. RMSE는 표본 크기가 커질수록 단조 감소하며, 총 표본 크기
+\textbf{약 1,000명} 수준에서 RMSE가 5\% 임계선 아래로 내려온다.
+1,000명이라는 조사 예산이 실용적으로 충분한 정확도를 확보하기 위한
+적절한 수치임이 확인된 것이다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{마무리: 통계적 접근의
+뼈대}\label{uxb9c8uxbb34uxb9ac-uxd1b5uxacc4uxc801-uxc811uxadfcuxc758-uxbf08uxb300}
+
+페르미 추정은 거친 근사치를 제공한다. 그러나 현대 사회에서는 지하철
+통계처럼 다양한 \textbf{보조 정보}를 활용할 수 있다. 통계학은 이 보조
+정보를 주관적 판단이 아닌 \textbf{데이터로부터 추정된 모형}을 통해
+calibration한다. 이것이 핵심이다.
+
+통계적 접근의 세 가지 뼈대:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  유용한 보조정보
+\item
+  통계적 모형
+\item
+  모형의 모수를 \textbf{데이터}로부터 추정
+\end{enumerate}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{통계학자의 관점}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+통계적 방법은 설명 가능하고 투명하다. 물론 비용이 수반된다 --- 데이터
+수집 비용과 전문가 활용 비용 모두. 결국 \textbf{통계 품질에 대한 의지}가
+그 비용을 지불하는 결정으로 이어진다.
+
+그리고 그 의지는 정치적 중립성에 대한 의지와 긴밀히 연결된다. 통계는
+사회적 신뢰를 기반으로 하는 일종의 공공재다.
+
+\end{tcolorbox}
+
+\bookmarksetup{startatroot}
+
+\chapter{제3강: 외래 관광객수
+추정}\label{uxc81c3uxac15-uxc678uxb798-uxad00uxad11uxac1duxc218-uxcd94uxc815}
+
+\begin{quote}
+``데이터가 하나뿐일 때 우리는 그것을 믿을 수밖에 없다. 데이터가 두 개일
+때 비로소 통계학이 시작된다.''
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{작년 제주도에 외국인 관광객은 몇 명이나
+왔을까}\label{uxc791uxb144-uxc81cuxc8fcuxb3c4uxc5d0-uxc678uxad6duxc778-uxad00uxad11uxac1duxc740-uxba87-uxba85uxc774uxb098-uxc654uxc744uxae4c}
+
+단순한 질문이다. 어딘가에 답이 있을 것 같고, 실제로 한국관광공사 같은
+기관에서는 매년 이런 통계를 발표한다. 그런데 이 숫자가 어떻게
+만들어지는지 들여다보면 이야기가 달라진다.
+
+우리는 이번 강의에서 \textbf{외래관광객 실태조사}라는 구체적인 사례를
+통해, 현대 통계학의 중요한 갈래 중 하나인 \textbf{소지역 추정(small area
+estimation)}을 살펴볼 것이다. 서로 다른 두 자료가 다른 답을 내놓을 때,
+우리는 어떻게 진실에 접근할 수 있을까?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{두 개의 데이터, 두 개의
+답}\label{uxb450-uxac1cuxc758-uxb370uxc774uxd130-uxb450-uxac1cuxc758-uxb2f5}
+
+\subsection{서베이와
+빅데이터}\label{uxc11cuxbca0uxc774uxc640-uxbe45uxb370uxc774uxd130}
+
+한국관광공사는 외국인 관광객 통계를 만들기 위해 두 가지 종류의 자료를
+수집한다.
+
+첫째는 \textbf{외래관광객 실태조사}, 즉 서베이 자료다. 공항에서 출국하는
+외국인을 대상으로 어느 지역을 방문했는지, 얼마나 머물렀는지 등을
+설문한다. 우리가 통계라고 하면 흔히 떠올리는 전통적 방식이다.
+
+둘째는 \textbf{KT 핸드폰 로밍 데이터}다. 외국인이 한국에 입국하면 대부분
+자국 통신사의 로밍 서비스를 이용하는데, 이때 기지국 위치 정보가 자동으로
+기록된다. 누가 어느 지역에 언제 있었는지가 대량으로 집계된다. 이른바
+\textbf{빅데이터}다.
+
+\subsection{기초 분석의
+충격}\label{uxae30uxcd08-uxbd84uxc11duxc758-uxcda9uxaca9}
+
+2016년 중국인 관광객에 대해 두 자료를 시도별로 나란히 놓아보자.
+
+\textbf{표 3.1: 2016년 중국인 관광객 수 (단위: 천 명)}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule\noalign{}
+지역 & 서베이 값 & KT 자료값 & T-통계량 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+서울 & 5,953 & 4,945 & 5.91 \\
+부산 & 390 & 357 & 0.40 \\
+대구 & 35 & 87 & -2.01 \\
+인천 & 354 & 1,335 & -11.95 \\
+광주 & 18 & 30 & -0.75 \\
+대전 & 33 & 32 & 0.03 \\
+울산 & 0 & 35 & --- \\
+경기 & 624 & 1,216 & -5.68 \\
+강원 & 228 & 128 & 1.54 \\
+충북 & 13 & 125 & -6.67 \\
+충남 & 38 & 78 & -1.54 \\
+전북 & 56 & 50 & 0.17 \\
+전남 & 44 & 111 & -2.31 \\
+경북 & 61 & 83 & -0.72 \\
+경남 & 44 & 83 & -1.37 \\
+제주 & 2,818 & 2,009 & 4.39 \\
+\end{longtable}
+}
+
+숫자가 놀랄 만큼 다르다. 서울은 서베이가 100만 명 이상 많고, 인천은 KT
+자료가 거의 네 배나 많다. 제주는 서베이가 훨씬 크고, 충북은 KT가 열 배
+가까이 크다.
+
+\textbf{어느 쪽이 맞는 것일까?}
+
+사실 둘 다 틀렸을 수 있다. 정확히 말하면, \textbf{둘 다 나름의 오차를
+가지고 있다}는 것이 통계학자의 관점이다. 다만 그 오차의 \textbf{성격}이
+서로 다르다.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{서베이}는 \textbf{표본 오차(sampling error)}를 가진다. 모든
+  관광객을 조사한 것이 아니라 일부만 뽑아서 조사했기 때문이다. 표본을
+  다시 뽑으면 값이 또 달라지는, 무작위 변동에 의한 오차다.
+\item
+  \textbf{KT 빅데이터}는 겉보기에는 전수조사처럼 보이지만 실제로는
+  그렇지 않다. KT 가입자만 잡히며, 타 통신사 로밍 고객은 빠지고, 여러
+  기지국 신호가 겹쳐 중복 집계되기도 하며, 공항에 잠시 내렸다 간
+  환승객까지 포함되는 문제가 있다. 이렇게 \textbf{한쪽으로 치우쳐서
+  나타나는} 체계적 오차를 통계학에서는 \textbf{정보 편향(information
+  bias)}이라고 부른다.
+\end{itemize}
+
+두 오차의 성격이 다르다는 점이 중요하다. \textbf{표본 오차는 표본을
+늘리면 줄어들지만, 편향은 데이터를 아무리 많이 모아도 저절로 없어지지
+않는다.} 인천 사례가 전형적이다. KT는 수백만 건의 데이터를 가지고
+있지만, 그 많은 데이터가 전부 같은 방향으로 부풀려져 있다. 공항에 기지국
+신호가 잡힌 사람을 모두 인천 방문객으로 집계하기 때문이다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{발상의 전환: 두 데이터를
+결합하라}\label{uxbc1cuxc0c1uxc758-uxc804uxd658-uxb450-uxb370uxc774uxd130uxb97c-uxacb0uxd569uxd558uxb77c}
+
+``둘 다 쓰고 싶은데 어떻게 하면 될까요?''
+
+한국관광공사 통계 담당자가 어느 날 저자를 찾아와서 던진 질문이 바로
+이것이었다. 당시 저자는 카이스트에서 교수로 재직 중이었고, 그 담당자는
+이 문제를 풀 수 있는 사람을 수소문한 끝에 저자를 찾아왔다. 소지역 추정
+분야를 연구해온 통계학자를 찾고 있었던 것이다.
+
+담당자의 고민은 명확했다. 한쪽을 버릴 수가 없었기 때문이다. 서베이
+자료는 정부가 공식 통계로 인정하는 신뢰도를 가지고 있고, KT 자료는
+서베이에서 놓친 풍부한 정보를 담고 있다. 어느 하나만 선택하는 것은
+나머지 하나를 버리는 일이었다.
+
+그래서 문제는 이렇게 재정의된다.
+
+\begin{quote}
+\emph{한쪽을 버릴 것이 아니라, 두 데이터를 \textbf{결합}할 수는 없을까?}
+\end{quote}
+
+각자 다른 약점을 가진 두 정보원이 있을 때, 이들을 잘 섞으면 각각보다
+나은 추정값을 만들 수 있다는 아이디어다. 이 발상에서 출발하는 것이 바로
+\textbf{소지역 추정(Small Area Estimation)}이다.
+
+``소지역''이라는 말에서 ``소(小)''는 크기가 작다는 뜻이 아니라
+\textbf{서베이 표본이 충분히 확보되지 않은 단위}라는 뜻이다. 외래관광객
+실태조사 표본을 16개 시도에 흩뿌려 놓으면 지역별 표본이 매우 적어지고,
+서베이 추정값의 오차가 너무 커져서 쓸모가 없어진다. 바로 이때
+\textbf{다른 데이터의 도움}을 받자는 것이다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{기호와 모형}\label{uxae30uxd638uxc640-uxbaa8uxd615}
+
+\subsection{세 가지 변수}\label{uxc138-uxac00uxc9c0-uxbcc0uxc218}
+
+각 지역 \(i\)에 대해 다음 세 가지 양을 생각하자.
+
+\begin{itemize}
+\tightlist
+\item
+  \(Y_i\): 지역 \(i\)의 실제 방문자 수. 우리가 진짜 알고 싶은 값이지만
+  관측할 수 없다.
+\item
+  \(\hat{Y}_i\): 서베이에서 얻은 \(Y_i\)의 추정값. 표본 오차가 있다.
+\item
+  \(X_i\): KT 빅데이터 값. 정보량은 풍부하지만 정보 편향이 있다.
+\end{itemize}
+
+우리의 목표는 이것이다: \textbf{\(\hat{Y}_i\)와 \(X_i\)를 이용하여
+\(Y_i\)를 알아내자.}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{예측(prediction)과 추정(estimation)의 구별}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+이런 식으로 관측되지 않은 확률변수의 값을 다른 관측값을 이용해 알아내는
+것을 통계학에서는 \textbf{예측(prediction)}이라고 부른다. 비슷한 용어인
+\textbf{추정(estimation)}과 구별해야 한다.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{추정(estimation)}: 고정된 미지의 \textbf{모수(parameter)}를
+  알아내는 것. 예를 들어 모집단 평균 \(\mu\)를 알아내는 일.
+\item
+  \textbf{예측(prediction)}: 관측되지 않은 \textbf{확률변수(random
+  variable)}의 값을 알아내는 것. 예를 들어 내일의 기온, 또는 여기서의
+  \(Y_i\).
+\end{itemize}
+
+여기서 \(Y_i\)를 확률변수로 보는 이유는 뒤에 나올 \textbf{구조 오차
+모형}에서 \(Y_i\)가 \(e_i\)라는 무작위 항을 가진 것으로 가정되기
+때문이다.
+
+\end{tcolorbox}
+
+\subsection{두 개의 모형}\label{uxb450-uxac1cuxc758-uxbaa8uxd615}
+
+소지역 추정에서는 두 가지 모형을 동시에 세운다.
+
+\textbf{첫째, 표본 오차 모형(sampling error model):}
+
+\[\hat{Y}_i = Y_i + u_i, \quad u_i \sim N(0, V_i)\]
+
+서베이 값은 참값에 랜덤한 오차가 더해진 것이다. 여기서 \(V_i\)는 서베이
+설계로부터 계산 가능하다.
+
+\textbf{둘째, 구조 오차 모형(structural error model):}
+
+\[Y_i = \beta X_i + e_i, \quad e_i \sim N(0, \sigma^2 X_i)\]
+
+참값은 빅데이터 값에 비례하되 약간의 모형 오차가 있다. 이 모형의
+주인공은 \(\beta\)다. \textbf{\(\beta\)는 빅데이터의 편향을 보정하는
+눈금자(calibration multiplier)} 역할을 한다. 예를 들어
+\(\hat{\beta} = 0.4\)라면 ``KT 데이터는 참값의 2.5배 정도 부풀려져
+있다''고 해석할 수 있다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{역사적 배경: Fay-Herriot
+모형}\label{uxc5eduxc0acuxc801-uxbc30uxacbd-fay-herriot-uxbaa8uxd615}
+
+이 모형의 뿌리는 1970년대 미국으로 거슬러 올라간다.
+
+미국 연방정부는 교육 불평등을 줄이기 위해 \textbf{가난한 지역일수록
+초중고 보조금을 더 많이 배분한다}는 원칙을 세우고 있었다. 이 원칙을
+실현하기 위해 미국 의회는 \textbf{SAIPE(Small Area Income and Poverty
+Estimates) 프로그램}을 법안으로 통과시켰다. ``각 학군별로 소득 및 빈곤
+통계를 매년 산출하여, 이를 근거로 보조금을 차등 배분하라''는 것이 법적
+명령이 된 것이다.
+
+이 법안은 \textbf{미국 인구통계국(Census Bureau)에 엄청난 숙제}를
+안겨주었다. 미국 전역의 학군은 1만 개가 넘는데, 그 모든 학군에 대해 매년
+소득 통계를 내야 했다. 문제는 두 가지였다.
+
+\begin{itemize}
+\tightlist
+\item
+  센서스(인구조사)는 10년에 한 번만 이루어지므로 센서스 자료는 시간이
+  지날수록 오래된 값이 된다.
+\item
+  매년 하는 서베이는 작은 지역 단위로 내려가면 표본이 적어 오차가 너무
+  크다.
+\end{itemize}
+
+이 난제를 풀기 위해 1979년, 두 명의 Census Bureau 통계학자
+\textbf{Robert Fay}와 \textbf{Roger Herriot}이 나섰다 (Fay and Herriot,
+1979). 그들의 제안은 다음과 같았다.
+
+\begin{quote}
+\emph{센서스 자료(\(X_i\))는 시점이 오래되었지만 정확한 기준점을
+제공한다. 서베이 자료(\(\hat{Y}_i\))는 최신이지만 오차가 크다. 두 정보를
+섞자.}
+\end{quote}
+
+이것이 \textbf{Fay-Herriot 모형}이다. 이 모형 덕분에 SAIPE 프로그램은
+실제로 작동 가능한 통계 체계가 되었고, \textbf{정부 기관이 통계 모형을
+정책에 직접 반영한 세계 최초의 사례}로 기록되었다. 의회의 법안이
+행정부에 숙제를 안기고, 그 숙제가 통계학자들에게 새로운 이론을 만들게
+했으며, 그 이론이 거꾸로 정책의 근거가 된 것이다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{최적 예측}\label{uxcd5cuxc801-uxc608uxce21}
+
+\subsection{결합 공식의
+도출}\label{uxacb0uxd569-uxacf5uxc2dduxc758-uxb3c4uxcd9c}
+
+우리의 목표는 \(\hat{Y}_i\)와 \(X_i\)를 결합하여 \(Y_i\)를 예측하는
+것이었다.
+
+두 모형을 결합하면 \(\hat{Y}_i\)의 주변 분포(marginal distribution)를
+유도할 수 있다.
+
+\[\hat{Y}_i = \beta X_i + \underbrace{e_i}_{\text{model error}} + \underbrace{u_i}_{\text{sampling error}}\]
+
+두 오차 \(e_i\)와 \(u_i\)가 서로 독립이고 정규분포를 따른다고 가정하면,
+
+\[\hat{Y}_i \sim N\left(\beta X_i,\; \sigma^2 X_i + V_i\right) \tag{1}\]
+
+식 (1)에 \textbf{최대우도 추정법(maximum likelihood method)}을 적용하면
+\(\theta = (\beta, \sigma^2)\)을 데이터로부터 추정할 수 있다.
+
+이렇게 얻은 모수 추정치를 바탕으로, \(Y_i\)의 \textbf{최적 선형 불편
+예측량(best linear unbiased predictor, BLUP)}은 다음과 같은 형태로
+유도된다.
+
+\[\hat{Y}_i^* = \alpha_i \hat{Y}_i + (1 - \alpha_i) X_i \hat{\beta} \tag{2}\]
+
+여기서 결합 계수 \(\alpha_i\)는
+
+\[\alpha_i = \frac{V(e_i)}{V(u_i) + V(e_i)} = \frac{\sigma^2 X_i}{V_i + \sigma^2 X_i}\]
+
+이다.
+
+\subsection{결합 계수의
+직관}\label{uxacb0uxd569-uxacc4uxc218uxc758-uxc9c1uxad00}
+
+식 (2)는 두 추정량의 \textbf{가중평균}이다. 오른쪽 항
+\(X_i \hat{\beta}\)는 ``KT 값에 보정 계수를 곱한 것'', 즉 모형으로부터
+만들어진 \textbf{합성 추정량(synthetic estimator)}이다. 왼쪽 항
+\(\hat{Y}_i\)는 서베이로부터 얻은 \textbf{직접 추정량(direct
+estimator)}이다.
+
+이렇게 성격이 서로 다른 두 추정량을 결합한 형태의 추정량을 통계학에서는
+\textbf{복합 추정량(composite estimator)}이라고 부른다. 한 종류의
+정보만으로는 부족할 때 여러 정보원을 복합적으로 활용한다는 뜻에서다. 즉
+최적 예측치 \(\hat{Y}_i^*\)는 \textbf{직접 추정량과 합성 추정량의 복합
+추정량}이다.
+
+결합 계수 \(\alpha_i\)의 해석은 직관적이다.
+
+\begin{itemize}
+\tightlist
+\item
+  \(V(u_i)/V(e_i) \to 0\)이면 \(\alpha_i \to 1\)이 되어
+  \(\hat{Y}_i^* \to \hat{Y}_i\). 즉 \textbf{서베이 오차가 작으면 서베이
+  값을 그대로 믿는다.}
+\item
+  \(V(e_i)/V(u_i) \to 0\)이면 \(\alpha_i \to 0\)이 되어
+  \(\hat{Y}_i^* \to X_i \hat{\beta}\). 즉 \textbf{서베이 오차가 크면
+  모형 기반 합성값에 의존한다.}
+\end{itemize}
+
+불확실한 쪽에 덜 기대고, 확실한 쪽에 더 기대는 것이다. 당연한
+이치이지만, 이 ``당연함''을 수식으로 엄밀하게 표현한 데 소지역 추정의
+가치가 있다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{실증 분석 결과}\label{uxc2e4uxc99d-uxbd84uxc11d-uxacb0uxacfc-1}
+
+\subsection{시도 단위
+분석}\label{uxc2dcuxb3c4-uxb2e8uxc704-uxbd84uxc11d}
+
+앞의 모형을 2016년 중국인 관광객 자료에 적용하면 다음과 같은 결과를
+얻는다.
+
+\textbf{표 3.2: 시도 단위 분석 결과 (단위: 천 명)}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1091}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1636}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.2000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1273}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+지역
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+직접 추정 \(\hat{Y}_i\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+간접 추정 \(X_i\hat{\beta}\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+결합 계수 \(\alpha_i\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+최적 추정값 \(\hat{Y}_i^*\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+상대 MSE (\%)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+서울 & 5,953 & 3,589 & 0.993 & 5,936 & 99.6 \\
+부산 & 390 & 259 & 0.755 & 358 & 87.4 \\
+대구 & 35 & 64 & 0.663 & 45 & 82.1 \\
+인천 & 354 & 969 & 0.978 & 367 & 99.0 \\
+광주 & 18 & 22 & 0.354 & 21 & 59.5 \\
+대전 & 33 & 23 & 0.222 & 26 & 47.1 \\
+울산 & 0 & 25 & 0.000 & 25 & --- \\
+경기 & 624 & 883 & 0.958 & 635 & 97.9 \\
+강원 & 228 & 93 & 0.392 & 146 & 62.6 \\
+충북 & 13 & 91 & 0.904 & 21 & 95.1 \\
+충남 & 38 & 57 & 0.604 & 45 & 77.7 \\
+전북 & 56 & 36 & 0.286 & 42 & 53.5 \\
+전남 & 44 & 81 & 0.712 & 54 & 84.4 \\
+경북 & 60 & 61 & 0.524 & 60 & 72.4 \\
+경남 & 44 & 60 & 0.582 & 51 & 76.3 \\
+제주 & 2,818 & 1,458 & 0.953 & 2,754 & 97.7 \\
+\end{longtable}
+}
+
+\emph{상대 MSE: 직접 추정량의 MSE 대비 최적 예측값의 MSE 비율}
+
+서울은 \(\alpha_i = 0.993\)로 거의 1에 가깝다. 서울은 표본이 커서 서베이
+값을 거의 그대로 믿는다는 뜻이다. 반면 울산은 \(\alpha_i = 0\)이다.
+서베이 응답자가 0명이었기 때문에 서베이를 전혀 신뢰할 수 없어 모형에만
+의존한다. 광주와 대전 같은 중간 규모 지역에서는 \(\alpha_i\)가
+0.2\textasciitilde0.4 정도로 나와 두 자료를 적절히 섞는다.
+
+마지막 열의 \textbf{상대 MSE}는 이 방법이 얼마나 효율적인지를 보여준다.
+특히 표본이 작은 지역일수록 소지역 추정이 서베이 단독 추정 대비 큰
+개선을 가져온다. 대전의 경우 오차 분산이 절반 이하로 줄었다.
+
+\subsection{시군구 단위
+분석}\label{uxc2dcuxad70uxad6c-uxb2e8uxc704-uxbd84uxc11d}
+
+시도보다 한 단계 더 내려가면 서베이 표본은 더욱 작아지고, 소지역 추정의
+위력은 더 뚜렷해진다.
+
+\textbf{표 3.3: 시군구 단위 분석 결과 (강원-충남 일부, 단위: 백 명)}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrrrr@{}}
+\toprule\noalign{}
+지역 & 직접 추정 & 간접 추정 & 결합 계수 & 최적 추정값 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+강릉 & 245 & 119 & 0.147 & 138 \\
+속초/양양 & 50 & 579 & 0.854 & 127 \\
+동해/삼척 & 130 & 144 & 0.159 & 141 \\
+춘천 & 1,727 & 859 & 0.311 & 1,128 \\
+평창 & 79 & 388 & 0.637 & 191 \\
+정선 & 30 & 82 & 0.191 & 72 \\
+태안 & 89 & 46 & 0.120 & 51 \\
+천안 & 239 & 272 & 0.672 & 250 \\
+보령 & 23 & 24 & 0.101 & 24 \\
+금산 & 23 & 16 & 0.047 & 16 \\
+아산 & 129 & 145 & 0.505 & 137 \\
+\end{longtable}
+}
+
+속초/양양은 서베이가 5천 명, KT가 5만 8천 명으로 열 배 이상 차이가 난다.
+최적 추정값은 1만 3천 명으로 KT 쪽에 많이 의존했다
+(\(\alpha_i = 0.854\)). 반면 춘천은 서베이가 17만 3천 명, KT가 8만 6천
+명으로 서베이 쪽이 크고, 최적 추정값 약 11만 3천 명은 서베이를 많이
+반영했다 (\(\alpha_i = 0.311\)).
+
+지역마다 두 자료의 신뢰도가 다르고, 모형은 그에 맞추어 자동으로 가중치를
+조절한다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{마무리}\label{uxb9c8uxbb34uxb9ac-1}
+
+전통적으로 공식 통계는 서베이에 의존해왔다. 그러나 최근 상황은 빠르게
+바뀌고 있다.
+
+한편으로는 \textbf{위기}다. 응답률은 점점 떨어지고 --- 제1강의 출구조사
+사례에서 이미 보았듯이 --- 조사 예산은 줄어들고 있다. 다른 한편으로는
+\textbf{기회}이기도 하다. 핸드폰 로밍 데이터, 신용카드 거래 데이터,
+검색어 데이터 등 예전에는 상상할 수 없던 방대한 자료가 실시간으로
+쏟아진다.
+
+하지만 빅데이터를 그대로 쓸 수는 없다. 정보 편향이 있기 때문이다. 반대로
+서베이만 고집하기도 어렵다. 표본이 부족하기 때문이다.
+
+소지역 추정은 이 두 세계를 연결하는 다리다. 서베이를 \textbf{학습
+자료}로 삼아 빅데이터를 보정하고, 동시에 빅데이터의 풍부한 정보량을
+활용하여 서베이의 한계를 극복한다. 보정된 빅데이터 자료를 그대로 통계로
+사용하는 합성 데이터 방식(synthetic data method)은 모형에 지나치게
+의존하므로, 이를 보완하기 위해 직접 추정량과 결합한 \textbf{복합
+추정량}을 사용하는 것이 소지역 추정의 핵심이다.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{결론}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+좋은 통계는 하나의 완벽한 데이터에서 나오지 않는다. 서로 다른 결함을
+가진 여러 데이터를 \textbf{적절한 가중치로 결합할 때} 비로소 합리적인
+추정이 가능하다.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{통계학자의 관점}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+편향된 자료라고 해서 버릴 일이 아니며, 표본이 작다고 해서 포기할 일도
+아니다. \textbf{``어떤 정보를 얼마나 믿을 것인가''}를 결정하는 것이
+통계학자의 일이다.
+
+소지역 추정은 이 판단을 수식으로 엄밀하게 표현하는 방법을 제공한다.
+불확실한 쪽에는 덜 기대고, 확실한 쪽에는 더 기댄다. 그리고 그
+``얼마나''의 비율을 자료 스스로가 말하게 한다.
+
+\end{tcolorbox}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{참고문헌}\label{uxcc38uxace0uxbb38uxd5cc-1}
+
+Fay, R. E. and Herriot, R. A. (1979). Estimates of income for small
+places: an application of James-Stein procedures to census data.
+\emph{Journal of the American Statistical Association}, \textbf{74},
+269--277.
+
+\bookmarksetup{startatroot}
+
+\chapter{제4강: 소지역 실업률
+추정}\label{uxc81c4uxac15-uxc18cuxc9c0uxc5ed-uxc2e4uxc5c5uxb960-uxcd94uxc815}
+
+\begin{quote}
+``하나의 자료만으로는 답을 얻을 수 없는 문제가 있다. 그럴 때 통계학은
+여러 자료를 엮는 법을 가르쳐준다.''
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{우리 동네의 실업률은
+얼마일까}\label{uxc6b0uxb9ac-uxb3d9uxb124uxc758-uxc2e4uxc5c5uxb960uxc740-uxc5bcuxb9c8uxc77cuxae4c}
+
+전국 실업률은 뉴스에서 매달 발표된다. 지난달 몇 퍼센트, 이번 달 몇
+퍼센트. 정부 경제 정책의 핵심 지표이기 때문이다. 그런데 한 걸음 더
+들어가 \textbf{내가 사는 시, 내가 사는 구의 실업률}은 얼마일까?
+
+이 질문에 답하기 위해 한국에서는 두 종류의 표본조사가 운영되고 있다. 이
+두 조사는 서로 다른 약점을 가지고 있으며, 그 약점을 통계학적으로
+결합하는 방법이 이번 강의의 주제다.
+
+제3강에서 다룬 외래 관광객 추정 문제의 자연스러운 확장이지만, 한 가지
+중요한 차이가 있다. 제3강의 보조자료(KT 빅데이터)는 표본오차가 없다고
+간주할 수 있었던 반면, 이번에는 보조자료 자체도 표본조사에서 나온다. 이
+차이가 모형의 구조를 바꾼다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{두 개의 실업률
+조사}\label{uxb450-uxac1cuxc758-uxc2e4uxc5c5uxb960-uxc870uxc0ac}
+
+한국에는 실업률을 재는 두 가지 대표적인 조사가 있다.
+
+\textbf{경제활동인구조사}(이하 \textbf{경활조사}, Korean Labor Force
+Survey, KLF)는 통계청에서 매달 실시하는 조사로, 전국 약 7천 가구가
+표본이다. 뉴스에서 듣는 월별 실업률이 여기서 나온다. 전문 조사원이
+투입되어 측정의 정확도가 높지만, 표본이 작아 시군구 단위로 내려가면 추정
+오차가 크다.
+
+\textbf{지역별 고용조사}(이하 \textbf{지역고용}, Local Area Labor Force
+Survey, LALF)는 이름 그대로 지역 단위 통계를 만들기 위한 조사다. 규모가
+훨씬 크다. 전국 약 20만 가구, 경활조사의 거의 30배. 다만 조사 주기는
+매달이 아니라 분기별이며, 시간제 조사원을 대거 투입해야 하는 구조이므로
+측정 과정에서 오차가 섞일 여지가 있다.
+
+\textbf{표 4.1: 두 조사의 특성 비교}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lcc@{}}
+\toprule\noalign{}
+항목 & 경활조사 (KLF) & 지역고용 (LALF) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+표본 규모 & 약 7,000 가구 & 약 200,000 가구 \\
+조사 주기 & 매월 & 분기 \\
+측정 정확도 & ↑ & ↓ \\
+표본오차 & ↑ & ↓ \\
+주요 활용 & 전국 단위 통계 & 지역 단위 통계 \\
+조사원 & 전문 조사원 & 시간제 조사원 다수 \\
+\end{longtable}
+}
+
+두 조사는 \textbf{서로 반대의 약점}을 가지고 있다. 경활조사는 측정은
+정확하나 표본이 작고, 지역고용은 표본은 크나 측정오차가 존재한다. 이쯤
+되면 통계학자가 던지는 질문은 자연스럽다.
+
+\emph{``두 조사를 결합하면, 각각보다 더 나은 추정을 할 수 있지
+않을까?''}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{기초 분석 ---
+산점도}\label{uxae30uxcd08-uxbd84uxc11d-uxc0b0uxc810uxb3c4}
+
+가로축에 경활조사 실업률, 세로축에 지역고용 실업률을 찍어 산점도를
+그려보면, 두 값 사이에 뚜렷한 선형 관계가 나타난다. 한 쪽이 높으면 다른
+쪽도 높고, 대체로 같은 방향으로 움직인다.
+
+하지만 완전히 일치하지는 않는다. 점들이 45도 선 주위에 퍼져 있는데, 이
+퍼짐이 바로 \textbf{두 조사 모두에 오차가 있다}는 증거다. 한 쪽을
+``참값'' 처럼 쓰고 다른 쪽을 회귀시킬 수 없는 이유이기도 하다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{네 가지 양의
+이야기}\label{uxb124-uxac00uxc9c0-uxc591uxc758-uxc774uxc57cuxae30}
+
+\subsection{기호의 정리}\label{uxae30uxd638uxc758-uxc815uxb9ac}
+
+이 문제에는 네 가지 양이 등장한다. 지역 \(i\)에 대해:
+
+\begin{itemize}
+\tightlist
+\item
+  \(Y_i\) --- 지역 \(i\)의 \textbf{참 실업률}, 경활조사 기준. 관측
+  불가능.
+\item
+  \(X_i\) --- 지역 \(i\)의 \textbf{참 실업률}, 지역고용 기준. 역시 관측
+  불가능.
+\item
+  \(\hat{Y}_i\) --- 경활조사에서 얻은 추정값. \(Y_i\)에 표본오차가
+  더해진 것.
+\item
+  \(\hat{X}_i\) --- 지역고용에서 얻은 추정값. \(X_i\)에 표본오차가
+  더해진 것.
+\end{itemize}
+
+여기서 \(Y_i\)와 \(X_i\)가 \textbf{서로 다른 개념}이라는 점이 중요하다.
+경활조사와 지역고용은 조사 방식, 질문 문항, 실업의 판정 기준이 완전히
+같지는 않으므로 엄밀히 말해 \(X_i \neq Y_i\)이다. 물론 대체로 비슷하다
+--- 그래서 산점도에서 선형 관계가 나타난다.
+
+우리의 목표는 \(Y_i\), 즉 \textbf{경활조사 기준 실업률}을 지역별로
+추정하는 것이다. 이때 \(\hat{X}_i\)라는 추가 정보를 활용하여 정확도를
+높이고자 한다.
+
+\subsection{관측치와 잠재변수의
+관계}\label{uxad00uxce21uxce58uxc640-uxc7a0uxc7acuxbcc0uxc218uxc758-uxad00uxacc4}
+
+네 양의 관계를 그림으로 정리하면 다음과 같다.
+
+\[
+\begin{array}{ccc}
+X_i & \longleftrightarrow & Y_i \\
+\downarrow & & \downarrow \\
+\hat{X}_i & & \hat{Y}_i
+\end{array}
+\]
+
+위쪽은 두 잠재변수, 아래쪽은 관측된 추정값이다. 세로 방향은 \textbf{표본
+오차 모형}을 나타내고, 가로 방향은 \textbf{두 잠재변수 간의 구조 오차
+모형}을 나타낸다. 두 모형을 함께 고려해야 문제를 풀 수 있다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{두 개의 모형}\label{uxb450-uxac1cuxc758-uxbaa8uxd615-1}
+
+\subsection{표본 오차
+모형}\label{uxd45cuxbcf8-uxc624uxcc28-uxbaa8uxd615}
+
+관측값은 참값에 오차가 더해진 형태다.
+
+\[\begin{pmatrix} \hat{X}_i \\ \hat{Y}_i \end{pmatrix} = \begin{pmatrix} X_i \\ Y_i \end{pmatrix} + \begin{pmatrix} a_i \\ b_i \end{pmatrix} \tag{1}\]
+
+여기서 \(a_i\)와 \(b_i\)는 평균이 0인 표본오차이며, 공분산 행렬
+
+\[V_i = \begin{pmatrix} V(a_i) & \text{Cov}(a_i, b_i) \\ \text{Cov}(a_i, b_i) & V(b_i) \end{pmatrix}\]
+
+은 표본 추출 이론에 따라 데이터로부터 추정할 수 있다.
+
+\subsection{구조 오차 모형 --- 중요한
+선택}\label{uxad6cuxc870-uxc624uxcc28-uxbaa8uxd615-uxc911uxc694uxd55c-uxc120uxd0dd}
+
+두 잠재변수 사이의 관계를 모형화하는 데는 두 가지 선택지가 있다.
+
+\textbf{선택 1: 조건부 분포}
+
+\[Y_i = \beta_0 + \beta_1 X_i + e_i, \quad e_i \sim N(0, \sigma_e^2) \tag{2}\]
+
+\textbf{선택 2: 결합 분포}
+
+\[\begin{pmatrix} X_i \\ Y_i \end{pmatrix} \sim N\left( \begin{pmatrix} \mu_x \\ \mu_y \end{pmatrix}, \begin{pmatrix} \sigma_x^2 & \sigma_{xy} \\ \sigma_{xy} & \sigma_y^2 \end{pmatrix} \right) \tag{3}\]
+
+제3강에서는 \(X_i\)가 직접 관측되었으므로 조건부 분포 식 (2)를 사용하는
+것이 자연스러웠다. 그러나 이번 문제에서는 \(X_i\)를 관측할 수 없고
+\(\hat{X}_i\)만 주어진다. 이로 인해 조건부 분포를 그대로 사용하면 심각한
+문제가 발생한다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{왜 나이브한 접근이
+실패하는가}\label{uxc65c-uxb098uxc774uxbe0cuxd55c-uxc811uxadfcuxc774-uxc2e4uxd328uxd558uxb294uxac00}
+
+\subsection{감쇠 편향}\label{uxac10uxc1e0-uxd3b8uxd5a5}
+
+\(\hat{X}_i\)를 \(X_i\) 대신 설명변수로 사용하여 OLS 회귀를 돌리면
+어떻게 될까? 편향된 결과를 얻게 된다.
+
+\[E[\hat{\beta}_{1,\text{OLS}}] = \frac{\text{Cov}(\hat{X}, \hat{Y})}{V(\hat{X})} = \frac{\text{Cov}(X + a,\, \beta_0 + \beta_1 X + e + b)}{V(X + a)} = \frac{\beta_1 V(X)}{V(X) + V(a)}\]
+
+진짜 \(\beta_1\)에 \(V(X)/\{V(X)+V(a)\}\)라는 1보다 작은 수가 곱해진
+형태다. \textbf{추정값은 반드시 참값보다 0 쪽으로 끌려간다.}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{회귀 희석 (Regression Dilution)}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+설명변수에 측정오차가 있을 때 OLS 회귀계수가 0 쪽으로 편향되는 현상을
+\textbf{회귀 희석} 또는 \textbf{감쇠 편향(attenuation bias)}이라고 한다.
+이는 errors-in-variables 문제의 대표적 귀결로, 측정오차를 무시하고 얻은
+회귀계수는 체계적으로 과소추정된다.
+
+\end{tcolorbox}
+
+이 문제를 피하려면 \(X_i\)와 \(Y_i\)를 \textbf{대칭적으로} 다루는 결합
+분포 식 (3)을 써야 한다. 이 결합 분포로부터 조건부 관계 식 (2)는
+유도되는 성질이지, 학습의 출발점이 아니다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{모형 학습}\label{uxbaa8uxd615-uxd559uxc2b5}
+
+식 (1)의 표본오차 모형과 식 (3)의 구조오차 모형을 결합하면, 관측치의
+\textbf{주변 분포}가 다음과 같이 주어진다.
+
+\[\begin{pmatrix} \hat{X}_i \\ \hat{Y}_i \end{pmatrix} \sim N\left( \begin{pmatrix} \mu_x \\ \mu_y \end{pmatrix}, \begin{pmatrix} \sigma_x^2 + V(a_i) & \sigma_{xy} + \text{Cov}(a_i, b_i) \\ \sigma_{xy} + \text{Cov}(a_i, b_i) & \sigma_y^2 + V(b_i) \end{pmatrix} \right) \tag{4}\]
+
+\(V(a_i)\), \(V(b_i)\), \(\text{Cov}(a_i, b_i)\)는 이미 데이터로부터
+추정 가능하므로, 미지 모수는
+\((\mu_x, \mu_y, \sigma_x^2, \sigma_y^2, \sigma_{xy})\) 다섯 개다. 다섯
+개의 모수에 다섯 개의 충분통계량이 있으므로, 최대우도법으로 식별
+가능하다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{최적 예측}\label{uxcd5cuxc801-uxc608uxce21-1}
+
+\subsection{두 개의 비편향
+추정량}\label{uxb450-uxac1cuxc758-uxbe44uxd3b8uxd5a5-uxcd94uxc815uxb7c9}
+
+모수 추정이 끝나면 지역별로 \(Y_i\)를 예측할 수 있다. \(Y_i\)에 대한 두
+가지 비편향 관측치가 존재한다.
+
+\textbf{직접 추정량}: 경활조사에서 얻은 \(\hat{Y}_i\).
+
+\textbf{간접 추정량 (synthetic estimator)}: 지역고용 자료를 구조오차
+모형을 통해 가공한 \(\beta_0 + \beta_1 \hat{X}_i\). 식 (1)과 식 (2)를
+결합하여 유도할 수 있다.
+
+\[\beta_0 + \beta_1 \hat{X}_i = \beta_0 + \beta_1(X_i + a_i) = Y_i + \beta_1 a_i - e_i\]
+
+따라서 모수를 알고 있을 때 \(Y_i\)에 대한 두 비편향 추정량은
+
+\[\begin{pmatrix} \hat{Y}_i \\ \beta_0 + \beta_1 \hat{X}_i \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix} Y_i + \begin{pmatrix} b_i \\ \beta_1 a_i - e_i \end{pmatrix} \tag{5}\]
+
+로 쓸 수 있으며, 오른쪽 벡터의 공분산 행렬은 모형 학습 결과로부터
+얻어진다.
+
+\subsection{최적 선형 비편향 예측자
+(BLUP)}\label{uxcd5cuxc801-uxc120uxd615-uxbe44uxd3b8uxd5a5-uxc608uxce21uxc790-blup}
+
+식 (5)의 두 추정량을 결합하는 최적 방법은 \textbf{일반화
+최소자승법(GLS)}이다. 결과는 가중 평균 형태로 나타난다.
+
+\[\boxed{\hat{Y}_i^* = \alpha_i \hat{Y}_i + (1 - \alpha_i)(\beta_0 + \beta_1 \hat{X}_i)} \tag{6}\]
+
+여기서 가중치 \(\alpha_i\)는
+
+\[\alpha_i = \frac{\beta_1^2 V(a_i) + \sigma_e^2 - \beta_1 \text{Cov}(a_i, b_i)}{V(b_i) + \beta_1^2 V(a_i) + \sigma_e^2 - 2\beta_1 \text{Cov}(a_i, b_i)}\]
+
+이다. 두 오차가 독립이면(\(\text{Cov}(a_i, b_i) = 0\)) 간소화된다.
+
+\[\alpha_i = \frac{\beta_1^2 V(a_i) + \sigma_e^2}{V(b_i) + \beta_1^2 V(a_i) + \sigma_e^2}\]
+
+\subsection{해석}\label{uxd574uxc11d}
+
+가중치 \(\alpha_i\)는 두 추정량의 오차 분산의 상대적 크기로 결정된다.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{경활조사가 매우 정확할 때} (\(V(b_i) \to 0\)):
+  \(\alpha_i \to 1\), 직접 추정에 거의 전적으로 의존.
+\item
+  \textbf{지역고용 기반 예측이 매우 정확할 때} (\(V(a_i) \to 0\),
+  \(\sigma_e^2 \to 0\)): \(\alpha_i \to 0\), 간접 추정에 비중.
+\end{itemize}
+
+자료 스스로가 ``나를 얼마나 믿어야 할지''를 말하는 구조다.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{제3강과의 연결}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+식 (6)은 제3강의 \textbf{Fay-Herriot 모형}과 수학적으로 동일한 구조를
+갖는다. 직접 추정량과 간접 추정량의 가중 평균이며, 가중치는 분산의
+상대적 크기로 결정된다. 유일한 차이는 제3강에서는 보조자료 \(X_i\)를
+직접 사용했지만, 제4강에서는 \(\hat{X}_i\)(표본오차 포함)를 사용한다는
+점이다. 이 한 차이 때문에 구조 오차 모형을 조건부가 아닌 결합 분포로
+써야 했다.
+
+\end{tcolorbox}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{실증 분석 결과}\label{uxc2e4uxc99d-uxbd84uxc11d-uxacb0uxacfc-2}
+
+Kim et al. (2015) 에서는 229개 시군구 실업률에 이 방법론을 적용하였다.
+세 가지 추정량의 평균 제곱 오차(MSE) 분포를 비교한 결과는 다음과 같다.
+
+\textbf{표 4.2: 229개 시군구 실업률 추정량의 MSE 사분위수 분포}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2250}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2250}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+추정량
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+1사분위
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+중위수
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+3사분위
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+평균
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+경활조사만 (KLF) & 0.000063 & 0.000121 & 0.000240 & 0.000248 \\
+지역고용만 (LALF) & 0.000112 & 0.000133 & 0.000170 & 0.000148 \\
+\textbf{GLS (경활+지역고용)} & \textbf{0.000044} & \textbf{0.000074} &
+\textbf{0.000121} & \textbf{0.000089} \\
+\end{longtable}
+}
+
+두 조사를 GLS 로 결합한 결과, 경활조사 단독 대비 평균 MSE 가 \textbf{약
+64\% 감소}했다. 세 배 가까이 정확해진 셈이다. MSE 추정에는 jackknife
+방법을 사용했는데, 이는 매 지역을 한 번씩 제거하며 재추정하는 방식이다.
+
+주목할 점은 이 결과가 \textbf{새로운 조사를 더 실시하지 않고} 얻어졌다는
+것이다. 기존에 따로 운영되던 두 조사를 통계학적으로 결합했을 뿐이다.
+비용 한 푼 더 쓰지 않고 정확도를 세 배 가까이 올린 셈이며, 이것은
+통계학이 할 수 있는 일의 전형적인 예다.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{마무리}\label{uxb9c8uxbb34uxb9ac-2}
+
+제3강과 제4강을 한 쌍으로 놓고 보면, 현대 통계학의 한 가지 중요한 흐름이
+보인다.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{제3강}: 서베이 + 빅데이터의 결합. 보조자료가 편향은 있으나
+  표본오차는 없는 경우.
+\item
+  \textbf{제4강}: 서베이 + 서베이의 결합. 보조자료도 표본오차를 가지는
+  경우.
+\end{itemize}
+
+두 경우 모두 공통 원리는 \textbf{소지역 단위 모형(area-level model)}을
+통해 서로 다른 장점을 가진 자료를 결합하는 것이다. 다만 보조자료에
+오차가 포함되면 구조 오차 모형을 \textbf{결합 분포}로 써야 한다는 차이가
+있다. 조건부 분포를 그대로 쓰면 회귀 희석이라는 편향을 피할 수 없기
+때문이다.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{결론}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+설명변수에 표본오차가 있을 때는 조건부 분포 모형 대신 결합 분포 모형을
+사용해야 한다. 이를 통해 errors-in-variables 편향을 피하면서 두 자료원의
+정보를 올바르게 결합할 수 있다.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{통계학자의 관점}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+완벽한 데이터 하나로부터 답을 뽑아내는 일은 드물다. 현실의 자료는 대체로
+\textbf{결함을 가진 여러 조각}으로 존재한다. 통계학자의 일은 그 결함의
+패턴을 이해하고, 각 자료를 얼마나 믿어야 할지 결정하는 것이다.
+
+이 판단을 주관이 아니라 \textbf{자료 스스로가 말하게 만드는 것} ---
+가중치 \(\alpha_i\)가 분산 비율로 자동으로 결정된다는 사실 --- 이
+통계학의 아름다움이다.
+
+\end{tcolorbox}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{참고문헌}\label{uxcc38uxace0uxbb38uxd5cc-2}
+
+\protect\phantomsection\label{refs}
+\begin{CSLReferences}{1}{1}
+\bibitem[\citeproctext]{ref-kim2015}
+Kim, Jae Kwang, Seunghwan Park, and Seo-young Kim. 2015. {``Small Area
+Estimation Combining Information from Several Sources.''} \emph{Survey
+Methodology} 41 (1): 21--36.
+
+\end{CSLReferences}
+
+
+
+
+\end{document}
