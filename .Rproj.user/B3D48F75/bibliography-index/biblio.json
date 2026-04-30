@@ -112,6 +112,101 @@
             "title": "Small area estimation combining information from several sources",
             "type": "article-journal",
             "volume": "41"
+        },
+        {
+            "DOI": "10.1007/s13253-018-0320-2",
+            "author": [
+                {
+                    "family": "Kim",
+                    "given": "Jae Kwang"
+                },
+                {
+                    "family": "Wang",
+                    "given": "Zhonglei"
+                },
+                {
+                    "family": "Zhu",
+                    "given": "Zhengyuan"
+                },
+                {
+                    "family": "Cruze",
+                    "given": "Nathan B."
+                }
+            ],
+            "container-title": "Journal of Agricultural, Biological, and Environmental Statistics",
+            "id": "kim2018",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "page": "175-189",
+            "title": "Combining survey and non-survey big data for improved sub-area prediction using a multi-level model",
+            "type": "article-journal",
+            "volume": "23"
+        },
+        {
+            "DOI": "10.1214/18-AOAS1141",
+            "author": [
+                {
+                    "family": "Hwang",
+                    "given": "Youngdeok"
+                },
+                {
+                    "family": "Lu",
+                    "given": "Siyuan"
+                },
+                {
+                    "family": "Kim",
+                    "given": "Jae Kwang"
+                }
+            ],
+            "container-title": "Annals of Applied Statistics",
+            "id": "hwang2018",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "page": "2096-2120",
+            "title": "Bottom-up estimation and top-down prediction in multilevel models: Solar energy prediction combining information from multiple sources",
+            "title-short": "Bottom-up estimation and top-down prediction in multilevel models",
+            "type": "article-journal",
+            "volume": "12"
+        },
+        {
+            "DOI": "10.1093/biomet/asx073",
+            "author": [
+                {
+                    "family": "Wang",
+                    "given": "Zhonglei"
+                },
+                {
+                    "family": "Kim",
+                    "given": "Jae Kwang"
+                },
+                {
+                    "family": "Yang",
+                    "given": "Shu"
+                }
+            ],
+            "container-title": "Biometrika",
+            "id": "wang2018",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "page": "91-102",
+            "title": "An approximate Bayesian inference under informative sampling",
+            "type": "article-journal",
+            "volume": "105"
         }
     ],
     "project_biblios": [

@@ -13,6 +13,7 @@ book:
     - week2.qmd
     - week3.qmd
     - week4.qmd
+    - week5.qmd
 
 format:
   html:
@@ -23,8 +24,7 @@ format:
     highlight-style: github
   pdf:
     pdf-engine: xelatex
-    mainfont: "Noto Serif CJK KR"
-    mathfont: "Latin Modern Math"
+    mainfont: "AppleMyungjo"
     number-sections: true
     include-in-header:
       text: |
